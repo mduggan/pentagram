@@ -160,7 +160,7 @@ bool JoystickCursorProcess::loadData(IDataSource* ids, uint32 version)
 	return true;
 }
 
-void JoystickCursorProcess::saveData(ODataSource* ods)
+void JoystickCursorProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 	// saves no status

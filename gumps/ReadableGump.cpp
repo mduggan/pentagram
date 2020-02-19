@@ -45,7 +45,7 @@ ReadableGump::ReadableGump()
 
 }
 
-ReadableGump::ReadableGump(ObjId owner, uint16 shape, int font, std::string msg) :
+ReadableGump::ReadableGump(ObjId owner, uint16 shape, int font, const std::string &msg) :
 	ModalGump(0, 0, 100, 100, owner), shapenum(shape), fontnum(font), text(msg)
 {
 }
@@ -130,7 +130,7 @@ uint32 ReadableGump::I_readPlaque(const uint8* args, unsigned int /*argsize*/)
 	return gump->GetNotifyProcess()->getPid();
 }
 
-void ReadableGump::saveData(ODataSource* ods)
+void ReadableGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to load ModalGump");
 }

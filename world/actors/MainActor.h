@@ -58,21 +58,21 @@ public:
 	//! Get the GravityProcess of this Item, creating it if necessary
 	virtual GravityProcess* ensureGravityProcess();
 
-	virtual uint32 getArmourClass();
-	virtual uint16 getDefenseType();
-	virtual sint16 getAttackingDex();
-	virtual sint16 getDefendingDex();
+	virtual uint32 getArmourClass() const;
+	virtual uint16 getDefenseType() const;
+	virtual sint16 getAttackingDex() const;
+	virtual sint16 getDefendingDex() const;
 
-	virtual uint16 getDamageType();
-	virtual int getDamageAmount();
+	virtual uint16 getDamageType() const;
+	virtual int getDamageAmount() const;
 
 	virtual void setInCombat();
 	virtual void clearInCombat();
 
 	virtual ProcId die(uint16 DamageType);
 
-	std::string getName() { return name; }
-	void setName(std::string name_) { name = name_; }
+	const std::string &getName() const { return name; }
+	void setName(const std::string &name_) { name = name_; }
 
 	bool loadData(IDataSource* ids, uint32 version);
 
@@ -124,7 +124,7 @@ public:
 
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	void useInventoryItem(uint32 shapenum);
 

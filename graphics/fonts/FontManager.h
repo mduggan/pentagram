@@ -56,7 +56,7 @@ public:
 	//! \param rgb the color to use for the font
 	//! \param bordersize the size of the black border to add
 	//! \param SJIS true for a Japanese game font
-	bool addTTFOverride(unsigned int fontnum, std::string filename,
+	bool addTTFOverride(unsigned int fontnum, const std::string &filename,
 						int pointsize, uint32 rgb, int bordersize,
 						bool SJIS=false);
 
@@ -67,7 +67,7 @@ public:
 	bool addJPOverride(unsigned int fontnum, unsigned int jpfont, uint32 rgb);
 
 	//! load a TTF (for non-game fonts)
-	bool loadTTFont(unsigned int ttfnum, std::string filename,
+	bool loadTTFont(unsigned int ttfnum, const std::string &filename,
 					int pointsize, uint32 rgb, int bordersize);
 
 	// Reset the game fonts
@@ -88,7 +88,7 @@ private:
 
 	//! Get a (possibly cached) TTF_Font structure for filename/pointsize,
 	//! loading it if necessary.
-	TTF_Font* getTTF_Font(std::string filename, int pointsize);
+	TTF_Font* getTTF_Font(const std::string &filename, int pointsize);
 
 	//! Override fontnum with override
 	void setOverride(unsigned int fontnum, Pentagram::Font* override);

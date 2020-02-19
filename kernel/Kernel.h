@@ -57,7 +57,7 @@ public:
 	Process* getRunningProcess() const { return runningprocess; }
 
 	// objid = 0 means any object, type = 6 means any type
-	uint32 getNumProcesses(ObjId objid, uint16 processtype);
+	uint32 getNumProcesses(ObjId objid, uint16 processtype) const;
 
 	//! find a (any) process of the given objid, processtype
 	Process* findProcess(ObjId objid, uint16 processtype);
@@ -78,8 +78,8 @@ public:
 	ProcessIter getProcessBeginIterator() { return processes.begin(); }
 	ProcessIter getProcessEndIterator() { return processes.end(); }
 
-	void kernelStats();
-	void processTypes();
+	void kernelStats() const;
+	void processTypes() const;
 
 	void save(ODataSource* ods);
 	bool load(IDataSource* ids, uint32 version);
@@ -91,7 +91,7 @@ public:
 	void setFrameByFrame(bool fbf) { framebyframe = fbf; }
 	bool isFrameByFrame() const { return framebyframe; }
 
-	void addProcessLoader(std::string classname, ProcessLoadFunc func)
+	void addProcessLoader(const std::string &classname, ProcessLoadFunc func)
 		{ processloaders[classname] = func; }
 
 	uint32 getFrameNum() const { return framenum; };

@@ -165,7 +165,7 @@ public:
 
 #ifdef USE_DYNAMIC_UCSTACK
 #define UCStack DynamicUCStack
-	void save(ODataSource* ods);
+	void save(ODataSource* ods) const;
 	bool load(IDataSource* ids, uint32 version);
 #endif
 };
@@ -178,7 +178,7 @@ public:
 	UCStack() : BaseUCStack(0x1000, buf_array) { }
 	virtual ~UCStack() { }
 
-	void save(ODataSource* ods);
+	void save(ODataSource* ods) const;
 	bool load(IDataSource* ids, uint32 version);
 };
 #endif

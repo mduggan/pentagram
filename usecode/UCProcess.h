@@ -51,11 +51,11 @@ public:
 	void setReturnValue(uint32 retval) { temp32 = retval; }
 
 	//! dump some info about this process to pout
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	void load(uint16 classid_, uint16 offset_, uint32 this_ptr = 0,
 			  int thissize = 0, const uint8* args = 0, int argsize = 0);

@@ -353,7 +353,7 @@ void GravityProcess::fallStopped()
 	}
 }
 
-void GravityProcess::dumpInfo()
+void GravityProcess::dumpInfo() const
 {
 	Process::dumpInfo();
 
@@ -362,7 +362,7 @@ void GravityProcess::dumpInfo()
 }
 
 
-void GravityProcess::saveData(ODataSource* ods)
+void GravityProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

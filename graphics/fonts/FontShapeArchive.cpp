@@ -38,12 +38,12 @@ void FontShapeArchive::cache(uint32 shapenum)
 	if (shapes[shapenum]) return;
 
 	uint32 shpsize;
-	uint8 *data = getRawObject(shapenum, &shpsize);
+	const uint8 *data = getRawObject(shapenum, &shpsize);
 
 	if (!data || shpsize == 0) return;
 
 	// Auto detect format
-	if (!format) format = Shape::DetectShapeFormat(data,shpsize);
+	if (!format) format = Shape::DetectShapeFormat(data, shpsize);
 	
 	if (!format)
 	{

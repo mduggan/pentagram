@@ -81,7 +81,7 @@ Item::~Item()
 
 }
 
-void Item::dumpInfo()
+void Item::dumpInfo() const
 {
 	pout << "Item " << getObjId() << " (class "
 		 << GetClassType().class_name << ", shape "
@@ -608,12 +608,12 @@ Shape* Item::getShapeObject() const
 	return cachedShape;
 }
 
-uint16 Item::getFamily()
+uint16 Item::getFamily() const
 {
 	return static_cast<uint16>(getShapeInfo()->family);
 }
 
-uint32 Item::getWeight()
+uint32 Item::getWeight() const
 {
 	uint32 weight = getShapeInfo()->weight;
 
@@ -627,12 +627,12 @@ uint32 Item::getWeight()
 	}
 }
 
-uint32 Item::getTotalWeight()
+uint32 Item::getTotalWeight() const
 {
 	return getWeight();
 }
 
-uint32 Item::getVolume()
+uint32 Item::getVolume() const
 {
 	// invisible items (trap markers and such) don't take up volume
 	if (getFlags() & FLG_INVISIBLE) return 0;
@@ -1599,7 +1599,7 @@ void Item::explode()
 	}
 }
 
-uint16 Item::getDamageType()
+uint16 Item::getDamageType() const
 {
 	ShapeInfo* si = getShapeInfo();
 	if (si->weaponinfo) {
@@ -1778,7 +1778,7 @@ bool Item::canReach(Item* other, int range,
 									  getObjId(), other->getObjId());
 }
 
-bool Item::canMergeWith(Item* other)
+bool Item::canMergeWith(Item* other) const
 {
 	// can't merge with self
 	if (other->getObjId() == getObjId()) return false;
@@ -1818,7 +1818,7 @@ bool Item::canMergeWith(Item* other)
 }
 
 
-void Item::saveData(ODataSource* ods)
+void Item::saveData(ODataSource* ods) const
 {
 	Object::saveData(ods);
 	ods->write2(static_cast<uint16>(extendedflags));

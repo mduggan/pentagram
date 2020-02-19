@@ -174,7 +174,7 @@ void QuickAvatarMoverProcess::startMover(int x, int y, int z, int _dir)
 	}
 }
 
-void QuickAvatarMoverProcess::saveData(ODataSource* ods)
+void QuickAvatarMoverProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

@@ -17,7 +17,7 @@
  */
 
 #ifndef MINIMAPGUMP_H_INCLUDED
-#define MiniMapGump_H_INCLUDED
+#define MINIMAPGUMP_H_INCLUDED
 
 #include "Gump.h"
 #include "Texture.h"
@@ -48,7 +48,7 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif // MINIMAPGUMP_H_INCLUDED

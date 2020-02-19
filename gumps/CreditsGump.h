@@ -37,7 +37,7 @@ public:
 	virtual void InitGump(Gump* newparent, bool take_focus=true);
 
 	// Set a configuration option to true when user watches entire sequence
-	void SetFlagWhenFinished(std::string configkey_) { configkey=configkey_; }
+	void SetFlagWhenFinished(const std::string &configkey_) { configkey=configkey_; }
 
 	virtual void Close(bool no_del = false);
 

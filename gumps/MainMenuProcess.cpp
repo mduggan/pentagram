@@ -49,7 +49,7 @@ void MainMenuProcess::run()
 	terminate();
 }
 
-void MainMenuProcess::saveData(ODataSource* ods)
+void MainMenuProcess::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN();
 

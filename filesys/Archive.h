@@ -76,7 +76,7 @@ public:
 	virtual void uncache(uint32 index)=0;
 
 	//! Check if an object is cached
-	virtual bool isCached(uint32 index)=0;
+	virtual bool isCached(uint32 index) const =0;
 
 	uint32 getCount() const { return count; }
 

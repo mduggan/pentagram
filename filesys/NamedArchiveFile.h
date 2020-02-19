@@ -48,7 +48,7 @@ public:
 	}
 	virtual uint32 getSize(const std::string& name)=0;
 
-	virtual uint32 getCount()=0;
+	virtual uint32 getCount() const =0;
 
 	virtual uint32 getIndexCount() { return indexCount; }
 
@@ -57,7 +57,7 @@ public:
 
 protected:
 	bool indexToName(uint32 index, std::string& name) {
-		std::map<uint32, std::string>::iterator iter;
+		std::map<uint32, std::string>::const_iterator iter;
 		iter = indexedNames.find(index);
 		if (iter == indexedNames.end()) return false;
 		name = iter->second;

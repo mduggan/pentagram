@@ -70,7 +70,7 @@ void AmbushProcess::run()
 	terminate();
 }
 
-void AmbushProcess::saveData(ODataSource* ods)
+void AmbushProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

@@ -46,10 +46,10 @@ public:
 	virtual void clearObjId();
 
 	//! dump some info about this object to pout
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	//! save this object
-	void save(ODataSource* ods);
+	void save(ODataSource* ods) const;
 
 	//! Spawn a usecode function on this object
 	//! \param classid The usecode class to run
@@ -65,10 +65,10 @@ public:
 
 protected:
 	//! write the Object savegame header (mainly consisting of the classname)
-	void writeObjectHeader(ODataSource* ods);
+	void writeObjectHeader(ODataSource* ods) const;
 
 	//! save the actual Object data 
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	ObjId objid;
 };

@@ -179,7 +179,7 @@ RenderedText* TTFont::renderText(const std::string& text,
 	pout << "Total size: " << resultwidth << "," << resultheight << std::endl;
 #endif
 
-	std::list<PositionedText>::iterator iter;
+	std::list<PositionedText>::const_iterator iter;
 	for (iter = lines.begin(); iter != lines.end(); ++iter)
 	{
 		// convert to unicode

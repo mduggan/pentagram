@@ -188,10 +188,10 @@ public:
 
 	//! Get the family of the shape number of this Item. (This is a
 	//! member of the ShapeInfo object.)
-	uint16 getFamily();
+	uint16 getFamily() const;
 
 	//! Check if we can merge with another item.
-	bool canMergeWith(Item* other);
+	bool canMergeWith(Item* other) const;
 
 	//! Get the open ContainerGump for this Item, if any. (NULL if not open.)
 	ObjId getGump() { return gump; }
@@ -281,19 +281,19 @@ public:
 	virtual GravityProcess* ensureGravityProcess();
 
 	//! Get the weight of this Item
-	virtual uint32 getWeight();
+	virtual uint32 getWeight() const;
 
 	//! Get the weight of this Item and its contents, if any
-	virtual uint32 getTotalWeight();
+	virtual uint32 getTotalWeight() const;
 
 	//! Get the volume this item takes up in a container
-	virtual uint32 getVolume();
+	virtual uint32 getVolume() const;
 
 	//! explode
 	void explode();
 
 	//! get the damage type this object does when hitting something
-	virtual uint16 getDamageType();
+	virtual uint16 getDamageType() const;
 
 	//! receive a hit
 	//! \param other The item delivering the hit
@@ -387,7 +387,7 @@ public:
 	virtual void leaveFastArea();
 
 	//! dump some info about this item to pout
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	bool loadData(IDataSource* ids, uint32 version);
 
@@ -509,7 +509,7 @@ protected:
 	ProcId gravitypid;		// Item's GravityTracker (or 0)
 
 	//! save the actual Item data 
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 private:
 

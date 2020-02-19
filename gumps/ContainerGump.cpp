@@ -557,7 +557,7 @@ void ContainerGump::DropItem(Item* item, int mx, int my)
 	}
 }
 
-void ContainerGump::saveData(ODataSource* ods)
+void ContainerGump::saveData(ODataSource* ods) const
 {
 	ItemRelativeGump::saveData(ods);
 

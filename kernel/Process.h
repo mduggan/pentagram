@@ -73,19 +73,19 @@ public:
 	uint16 getType() const { return type; }
 
 	//! dump some info about this process to pout
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	//! save this process
-	void save(ODataSource* ods);
+	void save(ODataSource* ods) const;
 
 	//! load Process data
 	bool loadData(IDataSource* ids, uint32 version);
 
 protected:
 	//! save the Process data 
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
-	void writeProcessHeader(ODataSource* ods);
+	void writeProcessHeader(ODataSource* ods) const;
 
 	//! process id
 	ProcId pid;

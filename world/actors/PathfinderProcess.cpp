@@ -249,7 +249,7 @@ void PathfinderProcess::run()
 	waitFor(animpid);
 }
 
-void PathfinderProcess::saveData(ODataSource* ods)
+void PathfinderProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

@@ -106,9 +106,9 @@ public:
 	bool hasQuantity() const
 		{ return (family == SF_QUANTITY || family == SF_REAGENT); }
 
-	bool getTypeFlag(int typeflag);
-	bool getTypeFlagU8(int typeflag);
-	bool getTypeFlagCrusader(int typeflag);
+	bool getTypeFlag(int typeflag) const;
+	bool getTypeFlagU8(int typeflag) const;
+	bool getTypeFlagCrusader(int typeflag) const;
 
 	inline void getFootpadWorld(sint32& X, sint32& Y, sint32& Z, uint16 flipped) const;
 

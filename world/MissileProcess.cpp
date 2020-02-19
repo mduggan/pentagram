@@ -76,7 +76,7 @@ void MissileProcess::run()
 	}
 }
 
-void MissileProcess::saveData(ODataSource* ods)
+void MissileProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

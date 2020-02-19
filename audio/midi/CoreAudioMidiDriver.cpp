@@ -230,4 +230,4 @@ void CoreAudioMidiDriver::yield()
 	sched_yield();
 }
 
-#endif //MACOSX
+#endif //USE_CORE_AUDIO_MIDI

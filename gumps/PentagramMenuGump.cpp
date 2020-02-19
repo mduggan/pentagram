@@ -238,7 +238,7 @@ bool PentagramMenuGump::OnKeyDown(int key, int mod)
 	return false;
 }
 
-void PentagramMenuGump::ProcessCallback(std::string gamename, int message)
+void PentagramMenuGump::ProcessCallback(const std::string &gamename, int message)
 {
 	if (message != 0)
 	{

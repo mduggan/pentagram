@@ -29,7 +29,7 @@ public:
 	ENABLE_RUNTIME_CLASSTYPE();
 
 	ButtonWidget();
-	ButtonWidget(int X, int Y, std::string txt, bool gamefont, int font,
+	ButtonWidget(int X, int Y, const std::string &txt, bool gamefont, int font,
 				 uint32 mouseOverBlendCol = 0, int width = 0, int height = 0,
 				 sint32 layer = LAYER_NORMAL);
 	ButtonWidget(int X, int Y, FrameID frame_up, FrameID frame_down,
@@ -74,7 +74,7 @@ protected:
 public:
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif // BUTTONWIDGET_H_INCLUDED

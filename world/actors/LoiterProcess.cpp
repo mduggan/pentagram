@@ -104,7 +104,7 @@ void LoiterProcess::run()
 	}
 }
 
-void LoiterProcess::saveData(ODataSource* ods)
+void LoiterProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

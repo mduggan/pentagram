@@ -73,7 +73,7 @@ void DestroyItemProcess::run()
 	// NOTE: we're terminated here because this process belongs to the item
 }
 
-void DestroyItemProcess::saveData(ODataSource* ods)
+void DestroyItemProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 }

@@ -79,7 +79,7 @@ void ResurrectionProcess::run()
 		terminate();
 }
 
-void ResurrectionProcess::saveData(ODataSource* ods)
+void ResurrectionProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 }

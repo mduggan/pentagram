@@ -36,7 +36,7 @@ public:
 	// Frees unneeded system resources
 	virtual void freeResources() = 0;
 
-	virtual size_t getCapacity() = 0;
+	virtual size_t getCapacity() const = 0;
 
 	virtual void printInfo() = 0;
 };

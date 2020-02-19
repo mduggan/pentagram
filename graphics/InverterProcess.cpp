@@ -73,7 +73,7 @@ void InverterProcess::run()
 	}
 }
 
-void InverterProcess::saveData(ODataSource* ods)
+void InverterProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 	

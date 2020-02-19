@@ -181,7 +181,7 @@ void ScalerGump::RenderSurfaceChanged()
 	Gump::RenderSurfaceChanged();
 }
 
-void ScalerGump::ChangeScaler(std::string scalername, int scalex, int scaley)
+void ScalerGump::ChangeScaler(const std::string &scalername, int scalex, int scaley)
 {
 	SettingManager *settingman = SettingManager::get_instance();
 

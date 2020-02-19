@@ -74,7 +74,7 @@ void MusicFlex::cache(uint32 index)
 
 	// This will cache the data
 	uint32 size;
-	uint8 *buf = getRawObject(index, &size);
+	const uint8 *buf = getRawObject(index, &size);
 
 	if (!buf || !size) return;
 	IBufferDataSource ds(buf,size);
@@ -98,7 +98,7 @@ void MusicFlex::uncache(uint32 index)
 	songs[index] = 0;
 }
 
-bool MusicFlex::isCached(uint32 index)
+bool MusicFlex::isCached(uint32 index) const
 {
 	if (index >= count) return false;
 	if (!songs) return false;
@@ -109,14 +109,14 @@ bool MusicFlex::isCached(uint32 index)
 IDataSource* MusicFlex::getAdlibTimbres()
 {
 	uint32 size;
-	uint8* data = getRawObject(259, &size);
+	const uint8* data = getRawObject(259, &size);
 	return new IBufferDataSource(data, size, false, true);
 }
 
 void MusicFlex::loadSongInfo()
 {
 	uint32 size;
-	uint8 *buf = getRawObject(0, &size);
+	const uint8 *buf = getRawObject(0, &size);
 
 	if (!buf || !size)
 	{

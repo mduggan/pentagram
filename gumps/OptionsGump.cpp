@@ -152,7 +152,7 @@ bool OptionsGump::loadData(IDataSource* ids)
 	return true;
 }
 
-void OptionsGump::saveData(ODataSource* ods)
+void OptionsGump::saveData(ODataSource* ods) const
 {
 }
 

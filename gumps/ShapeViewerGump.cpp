@@ -288,7 +288,7 @@ bool ShapeViewerGump::loadData(IDataSource* ids)
 	return false;
 }
 
-void ShapeViewerGump::saveData(ODataSource* ods)
+void ShapeViewerGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ModalGump");
 }

@@ -58,14 +58,14 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	//! Paint the stats
 	void PaintStats(RenderSurface*, sint32 lerp_factor);
 
 	//! Paint a single stat
 	void PaintStat(RenderSurface* surf, unsigned int n,
-				   std::string text, int val);
+				   const std::string &text, int val);
 
 	RenderedText* cached_text[14]; // constant!!
 	int cached_val[7]; // constant!!

@@ -40,11 +40,11 @@ public:
 
 	virtual uint32 getSize(const std::string& name);
 
-	virtual uint32 getCount() { return count; }
+	virtual uint32 getCount() const { return count; }
 
 	static bool isZipFile(IDataSource* ds);
 
-	std::string getComment() { return globalComment; }
+	std::string getComment() const { return globalComment; }
 
 protected:
 	bool readMetadata();

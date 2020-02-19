@@ -79,7 +79,7 @@ void GlobEgg::enterFastArea()
 	Item::enterFastArea();
 }
 
-void GlobEgg::saveData(ODataSource* ods)
+void GlobEgg::saveData(ODataSource* ods) const
 {
 	Item::saveData(ods);
 }

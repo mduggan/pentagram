@@ -70,13 +70,13 @@ void GumpNotifyProcess::run()
 {
 }
 
-void GumpNotifyProcess::dumpInfo()
+void GumpNotifyProcess::dumpInfo() const
 {
 	Process::dumpInfo();
 	pout << " gump: " << gump << std::endl;
 }
 
-void GumpNotifyProcess::saveData(ODataSource* ods)
+void GumpNotifyProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

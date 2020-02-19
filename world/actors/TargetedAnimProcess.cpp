@@ -49,7 +49,7 @@ bool TargetedAnimProcess::init()
 }
 
 
-void TargetedAnimProcess::saveData(ODataSource* ods)
+void TargetedAnimProcess::saveData(ODataSource* ods) const
 {
 	ActorAnimProcess::saveData(ods);
 

@@ -54,7 +54,7 @@ public:
 
 	//! Get named object from file; returns NULL if name is invalid.
 	//! Must delete the returned buffer afterwards.
-	//! See also exists(std::string name)
+	//! See also exists(const std::string &name)
 	//! \param name name of object to fetch
 	//! \param size if non-NULL, size of object is stored in *size
 	virtual uint8* getObject(const std::string& name, uint32* size=0)=0;
@@ -66,7 +66,7 @@ public:
 	virtual uint32 getSize(uint32 index)=0;
 
 	//! Get size of named object; returns zero if name is invalid
-	//! See also exists(std::string name)
+	//! See also exists(const std::string &name)
 	//! \param index index of object to get size of
 	virtual uint32 getSize(const std::string& name)=0;
 
@@ -81,7 +81,7 @@ public:
 	//! Get upper bound for number of objects.
 	//! In an indexed file this is (probably) the highest index plus one,
 	//! while in a named file it's (probably) the actual count
-	virtual uint32 getCount()=0;
+	virtual uint32 getCount() const =0;
 
 	//! Get the highest index in the file
 	//! Guaranteed to be sufficiently large for a vector that needs to

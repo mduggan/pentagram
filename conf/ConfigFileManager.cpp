@@ -44,7 +44,7 @@ ConfigFileManager::~ConfigFileManager()
 	configfilemanager = 0;
 }
 
-bool ConfigFileManager::readConfigFile(string fname, istring root,
+bool ConfigFileManager::readConfigFile(const string &fname, const istring &root,
 									   bool readonly)
 {
 	INIFile* inifile = new INIFile();
@@ -60,7 +60,7 @@ bool ConfigFileManager::readConfigFile(string fname, istring root,
 	return true;
 }
 
-bool ConfigFileManager::readConfigString(string config, istring root,
+bool ConfigFileManager::readConfigString(const string &config, const istring &root,
 										 bool readonly)
 {
 	INIFile* inifile = new INIFile();
@@ -76,7 +76,7 @@ bool ConfigFileManager::readConfigString(string config, istring root,
 	return true;
 }
 
-void ConfigFileManager::write(istring root)
+void ConfigFileManager::write(const istring &root)
 {
 	for (std::vector<INIFile*>::iterator i = inifiles.begin();
 		 i != inifiles.end(); ++i)
@@ -96,7 +96,7 @@ void ConfigFileManager::clear()
 	inifiles.clear();
 }
 
-void ConfigFileManager::clearRoot(Pentagram::istring root)
+void ConfigFileManager::clearRoot(const Pentagram::istring &root)
 {
 	std::vector<INIFile*>::iterator i = inifiles.begin();
 
@@ -111,12 +111,12 @@ void ConfigFileManager::clearRoot(Pentagram::istring root)
 	}
 }
 
-bool ConfigFileManager::exists(istring key)
+bool ConfigFileManager::exists(const istring &key) const
 {
 	return (findKeyINI(key) != 0);
 }
 
-bool ConfigFileManager::get(istring key, string& ret)
+bool ConfigFileManager::get(const istring &key, string& ret) const
 {
 	INIFile* ini = findKeyINI(key);
 	if (!ini) return false;
@@ -126,7 +126,7 @@ bool ConfigFileManager::get(istring key, string& ret)
 }
 
 
-bool ConfigFileManager::get(istring key, int& ret)
+bool ConfigFileManager::get(const istring &key, int& ret) const
 {
 	INIFile* ini = findKeyINI(key);
 	if (!ini) return false;
@@ -135,7 +135,7 @@ bool ConfigFileManager::get(istring key, int& ret)
 	return true;
 }
 
-bool ConfigFileManager::get(istring key, bool& ret)
+bool ConfigFileManager::get(const istring &key, bool& ret) const
 {
 	INIFile* ini = findKeyINI(key);
 	if (!ini) return false;
@@ -144,7 +144,7 @@ bool ConfigFileManager::get(istring key, bool& ret)
 	return true;
 }
 
-void ConfigFileManager::set(istring key, string val)
+void ConfigFileManager::set(const istring &key, const string &val)
 {
 	INIFile* ini = findWriteINI(key);
 	if (!ini) return;
@@ -152,7 +152,7 @@ void ConfigFileManager::set(istring key, string val)
 	ini->set(key, val);
 }
 
-void ConfigFileManager::set(istring key, const char* val)
+void ConfigFileManager::set(const istring &key, const char* val)
 {
 	INIFile* ini = findWriteINI(key);
 	if (!ini) return;
@@ -160,7 +160,7 @@ void ConfigFileManager::set(istring key, const char* val)
 	ini->set(key, val);
 }
 
-void ConfigFileManager::set(istring key, int val)
+void ConfigFileManager::set(const istring &key, int val)
 {
 	INIFile* ini = findWriteINI(key);
 	if (!ini) return;
@@ -168,7 +168,7 @@ void ConfigFileManager::set(istring key, int val)
 	ini->set(key, val);
 }
 
-void ConfigFileManager::set(istring key, bool val)
+void ConfigFileManager::set(const istring &key, bool val)
 {
 	INIFile* ini = findWriteINI(key);
 	if (!ini) return;
@@ -176,7 +176,7 @@ void ConfigFileManager::set(istring key, bool val)
 	ini->set(key, val);
 }
 
-void ConfigFileManager::unset(istring key)
+void ConfigFileManager::unset(const istring &key)
 {
 	INIFile* ini = findWriteINI(key);
 	if (!ini) return;
@@ -186,15 +186,15 @@ void ConfigFileManager::unset(istring key)
 
 
 
-std::vector<istring> ConfigFileManager::listKeys(istring section,
-												 bool longformat)
+std::vector<istring> ConfigFileManager::listKeys(const istring &section,
+												 bool longformat) const
 {
 	std::vector<istring> keys;
 
 	std::set<istring> keyset;
-	std::set<istring>::iterator iter;
+	std::set<istring>::const_iterator iter;
 
-	for (std::vector<INIFile*>::iterator i = inifiles.begin();
+	for (std::vector<INIFile*>::const_iterator i = inifiles.begin();
 		 i != inifiles.end(); ++i)
 	{
 		if ((*i)->checkRoot(section)) {
@@ -210,15 +210,15 @@ std::vector<istring> ConfigFileManager::listKeys(istring section,
 	return keys;
 }
 
-std::vector<istring> ConfigFileManager::listSections(istring root,
-													 bool longformat)
+std::vector<istring> ConfigFileManager::listSections(const istring &root,
+													 bool longformat) const
 {
 	std::vector<istring> sections;
 
 	std::set<istring> sectionset;
 	std::set<istring>::iterator iter;
 
-	for (std::vector<INIFile*>::iterator i = inifiles.begin();
+	for (std::vector<INIFile*>::const_iterator i = inifiles.begin();
 		 i != inifiles.end(); ++i)
 	{
 		if ((*i)->checkRoot(root)) {
@@ -234,12 +234,12 @@ std::vector<istring> ConfigFileManager::listSections(istring root,
 	return sections;
 }
 
-std::map<istring,std::string> ConfigFileManager::listKeyValues(istring section,
-															   bool longformat)
+std::map<istring,std::string> ConfigFileManager::listKeyValues(const istring &section,
+															   bool longformat) const
 {
 	std::map<istring, std::string> values;
 
-	for (std::vector<INIFile*>::iterator i = inifiles.begin();
+	for (std::vector<INIFile*>::const_iterator i = inifiles.begin();
 		 i != inifiles.end(); ++i)
 	{
 		if ((*i)->checkRoot(section)) {
@@ -251,9 +251,9 @@ std::map<istring,std::string> ConfigFileManager::listKeyValues(istring section,
 }
 
 
-INIFile* ConfigFileManager::findKeyINI(istring key)
+INIFile* ConfigFileManager::findKeyINI(const istring &key) const
 {
-	for (std::vector<INIFile*>::reverse_iterator i = inifiles.rbegin();
+	for (std::vector<INIFile*>::const_reverse_iterator i = inifiles.rbegin();
 		 i != inifiles.rend(); ++i)
 	{
 		if ((*i)->hasKey(key))
@@ -263,9 +263,9 @@ INIFile* ConfigFileManager::findKeyINI(istring key)
 	return 0;
 }
 
-INIFile* ConfigFileManager::findWriteINI(istring key)
+INIFile* ConfigFileManager::findWriteINI(const istring &key)
 {
-	for (std::vector<INIFile*>::reverse_iterator i = inifiles.rbegin();
+	for (std::vector<INIFile*>::const_reverse_iterator i = inifiles.rbegin();
 		 i != inifiles.rend(); ++i)
 	{
 		if (!(*i)->isReadonly() && (*i)->checkRoot(key))

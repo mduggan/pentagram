@@ -90,7 +90,7 @@ void SplitItemProcess::run()
 		terminate();
 }
 
-void SplitItemProcess::saveData(ODataSource* ods)
+void SplitItemProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

@@ -120,7 +120,7 @@ void AskGump::ChildNotify(Gump *child, uint32 message)
 	}
 }
 
-void AskGump::saveData(ODataSource* ods)
+void AskGump::saveData(ODataSource* ods) const
 {
 	ItemRelativeGump::saveData(ods);
 

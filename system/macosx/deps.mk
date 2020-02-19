@@ -29,19 +29,19 @@ dep_clean_%: ${call arch_targets,%,clean};
 .SECONDARY:
 
 ${ROOT_DIRECTORY}/build/zlib.tar.gz:
-	curl -o $@ -L -S http://www.zlib.net/zlib-1.2.3.tar.gz
+	curl -o $@ -L -S http://www.zlib.net/zlib-1.2.11.tar.gz
 
 ${ROOT_DIRECTORY}/build/libpng.tar.gz:
 	curl -o $@ -L -S http://prdownloads.sourceforge.net/libpng/libpng-1.2.41.tar.gz
 
 ${ROOT_DIRECTORY}/build/SDL.tar.gz:
-	curl -o $@ -L -S http://libsdl.org/release/SDL-1.2.14.tar.gz
+	curl -o $@ -L -S http://libsdl.org/release/SDL-1.2.15.tar.gz
 
 ${ROOT_DIRECTORY}/build/freetype.tar.gz:
 	curl -o $@ -L -S http://prdownloads.sourceforge.net/freetype/freetype-2.3.7.tar.gz
 
 ${ROOT_DIRECTORY}/build/SDL_ttf.tar.gz:
-	curl -o $@ -L -S http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-2.0.9.tar.gz
+	curl -o $@ -L -S http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-2.0.11.tar.gz
 
 extract_zlib.%: ${ROOT_DIRECTORY}/build/zlib.tar.gz
 	cd ${BUILD_DIR} && tar --strip-components=1 -xzf $<
@@ -61,7 +61,7 @@ extract_SDL_ttf.%: ${ROOT_DIRECTORY}/build/SDL_ttf.tar.gz
 configure_zlib.%:
 	cd ${BUILD_DIR} && LDSHARED="${CC} ${LDFLAGS} -dynamiclib \
 		-install_name ${PREFIX_DIR}/lib/libz.1.dylib \
-		-compatibility_version 1 -current_version 1.2.3" \
+		-compatibility_version 1 -current_version 1.2.11" \
 		./configure --prefix=${PREFIX_DIR} --shared
 
 configure_libpng.%: zlib

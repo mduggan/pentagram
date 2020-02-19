@@ -42,13 +42,13 @@ public:
 
 	virtual void terminate();
 
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	Animation::Sequence getAction() const { return action; }
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	virtual bool init();
 

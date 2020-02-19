@@ -163,7 +163,7 @@ void MessageBoxGump::ChildNotify(Gump *child, uint32 message)
 	}
 }
 
-ProcId MessageBoxGump::Show(std::string title, std::string message, uint32 title_colour, std::vector<std::string> *buttons)
+ProcId MessageBoxGump::Show(const std::string &title, const std::string &message, uint32 title_colour, std::vector<std::string> *buttons)
 {
 	Gump *gump = new MessageBoxGump(title,message,title_colour,buttons);
 	gump->InitGump(0);
@@ -172,7 +172,7 @@ ProcId MessageBoxGump::Show(std::string title, std::string message, uint32 title
 	return gump->GetNotifyProcess()->getPid();
 }
 
-void MessageBoxGump::saveData(ODataSource* ods)
+void MessageBoxGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to load ModalGump");
 }

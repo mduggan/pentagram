@@ -74,7 +74,7 @@ void ConApp::helpMe()
 
 	//TODO: some actual help :-)
 	//note: arguments are already parsed at this point, so we could
-	//provide more detailed help on e.g., './llc --help --disasm' 
+	//provide more detailed help on e.g., './llc --help --disasm'
 
 	con.Print("\t--disasm\t- disassemble\n");
 	con.Print("\t--compile\t- compile\n");
@@ -100,7 +100,7 @@ void ConApp::run()
 		// ...
 
 		kernel->runProcesses();
-	
+
 		if (kernel->getNumProcesses(0, 6) == 0)
 			isRunning=false;
 

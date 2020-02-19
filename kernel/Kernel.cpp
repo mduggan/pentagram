@@ -28,6 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <map>
 
 typedef std::list<Process *>::iterator ProcessIterator;
+typedef std::list<Process *>::const_iterator ConstProcessIterator;
 
 Kernel* Kernel::kernel = 0;
 
@@ -245,21 +246,21 @@ Process* Kernel::getProcess(ProcId pid)
 	return 0;
 }
 
-void Kernel::kernelStats()
+void Kernel::kernelStats() const
 {
 	pout << "Kernel memory stats:" << std::endl;
 	pout << "Processes  : " << processes.size() << "/32765" << std::endl;
 }
 
-void Kernel::processTypes()
+void Kernel::processTypes() const
 {
 	pout << "Current process types:" << std::endl;
 	std::map<std::string, unsigned int> processtypes;
-	for (ProcessIterator it = processes.begin(); it != processes.end(); ++it) {
-		Process* p = *it;
+	for (ConstProcessIterator it = processes.begin(); it != processes.end(); ++it) {
+		const Process* p = *it;
 		processtypes[p->GetClassType().class_name]++;
 	}
-	std::map<std::string, unsigned int>::iterator iter;
+	std::map<std::string, unsigned int>::const_iterator iter;
 	for (iter = processtypes.begin(); iter != processtypes.end(); ++iter) {
 		pout << (*iter).first << ": " << (*iter).second << std::endl;
 	}	
@@ -335,13 +336,13 @@ void Kernel::ConCmd_advanceFrame(const Console::ArgvType& argv)
 	}
 }
 
-uint32 Kernel::getNumProcesses(ObjId objid, uint16 processtype)
+uint32 Kernel::getNumProcesses(ObjId objid, uint16 processtype) const
 {
 	uint32 count = 0;
 
-	for (ProcessIterator it = processes.begin(); it != processes.end(); ++it)
+	for (ConstProcessIterator it = processes.begin(); it != processes.end(); ++it)
 	{
-		Process* p = *it;
+		const Process* p = *it;
 
 		// Don't count us, we are not really here
 		if (p->is_terminated()) continue;

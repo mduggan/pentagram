@@ -105,7 +105,7 @@ void PaletteFaderProcess::run()
 	if (!counter--) terminate();
 }
 
-void PaletteFaderProcess::saveData(ODataSource* ods)
+void PaletteFaderProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 	

@@ -42,7 +42,7 @@ BookGump::BookGump()
 
 }
 
-BookGump::BookGump(ObjId owner, std::string msg) :
+BookGump::BookGump(ObjId owner, const std::string &msg) :
 	ModalGump(0, 0, 100, 100, owner), text(msg)
 {
 }
@@ -117,7 +117,7 @@ uint32 BookGump::I_readBook(const uint8* args, unsigned int /*argsize*/)
 	return gump->GetNotifyProcess()->getPid();
 }
 
-void BookGump::saveData(ODataSource* ods)
+void BookGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ModalGump");
 }

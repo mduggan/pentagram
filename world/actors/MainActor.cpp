@@ -171,11 +171,11 @@ void MainActor::teleport(int mapnum, int teleport_id)
 	justTeleported = true;
 }
 
-uint16 MainActor::getDefenseType()
+uint16 MainActor::getDefenseType() const
 {
 	uint16 type = 0;
 
-	std::list<Item*>::iterator iter;
+	std::list<Item*>::const_iterator iter;
 	for (iter = contents.begin(); iter != contents.end(); ++iter)
 	{
 		uint32 frame = (*iter)->getFrame();
@@ -188,11 +188,11 @@ uint16 MainActor::getDefenseType()
 	return type;
 }
 
-uint32 MainActor::getArmourClass()
+uint32 MainActor::getArmourClass() const
 {
 	uint32 armour = 0;
 
-	std::list<Item*>::iterator iter;
+	std::list<Item*>::const_iterator iter;
 	for (iter = contents.begin(); iter != contents.end(); ++iter)
 	{
 		uint32 frame = (*iter)->getFrame();
@@ -208,7 +208,7 @@ uint32 MainActor::getArmourClass()
 	return armour;
 }
 
-sint16 MainActor::getDefendingDex()
+sint16 MainActor::getDefendingDex() const
 {
 	sint16 dex = getDex();
 
@@ -224,7 +224,7 @@ sint16 MainActor::getDefendingDex()
 	return dex;
 }
 
-sint16 MainActor::getAttackingDex()
+sint16 MainActor::getAttackingDex() const
 {
 	sint16 dex = getDex();
 
@@ -238,7 +238,7 @@ sint16 MainActor::getAttackingDex()
 	return dex;
 }
 
-uint16 MainActor::getDamageType()
+uint16 MainActor::getDamageType() const
 {
 	Item* weapon = getItem(getEquip(ShapeInfo::SE_WEAPON));
 
@@ -254,7 +254,7 @@ uint16 MainActor::getDamageType()
 	return Actor::getDamageType();
 }
 
-int MainActor::getDamageAmount()
+int MainActor::getDamageAmount() const
 {
 	int damage = 0;
 
@@ -549,7 +549,7 @@ void MainActor::getWeaponOverlay(const WeaponOverlayFrame*& frame,
 	if (frame == 0) shape = 0;
 }
 
-void MainActor::saveData(ODataSource* ods)
+void MainActor::saveData(ODataSource* ods) const
 {
 	Actor::saveData(ods);
 	uint8 jt = justTeleported ? 1 : 0;

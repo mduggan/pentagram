@@ -821,7 +821,7 @@ bool Gump::OnTextInput(int unicode)
 	return handled;
 }
 
-bool Gump::mustSave(bool toplevel)
+bool Gump::mustSave(bool toplevel) const
 {
 	// DONT_SAVE flag
 	if (flags & FLAG_DONT_SAVE)
@@ -836,7 +836,7 @@ bool Gump::mustSave(bool toplevel)
 	return true;
 }
 
-void Gump::saveData(ODataSource* ods)
+void Gump::saveData(ODataSource* ods) const
 {
 	Object::saveData(ods);
 
@@ -869,7 +869,7 @@ void Gump::saveData(ODataSource* ods)
 	ods->write4(process_result);
 
 	unsigned int childcount = 0;
-	std::list<Gump*>::iterator it;
+	std::list<Gump*>::const_iterator it;
 	for (it = children.begin(); it != children.end(); ++it) {
 		if (!(*it)->mustSave(false)) continue;
 		childcount++;

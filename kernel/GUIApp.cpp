@@ -712,12 +712,12 @@ void GUIApp::shutdownGame(bool reloading)
 	}
 }
 
-void GUIApp::changeGame(Pentagram::istring newgame)
+void GUIApp::changeGame(const Pentagram::istring &newgame)
 {
 	change_gamename = newgame;
 }
 
-void GUIApp::menuInitMinimal(Pentagram::istring gamename)
+void GUIApp::menuInitMinimal(const Pentagram::istring &gamename)
 {
 	// Only if in the pentagram menu
 	if (gameinfo->name != "pentagram") return;
@@ -1447,7 +1447,7 @@ void GUIApp::changeVideoMode(int width, int height, int new_fullscreen)
 	GraphicSysInit();
 }
 
-bool GUIApp::LoadConsoleFont(std::string confontini)
+bool GUIApp::LoadConsoleFont(const std::string &confontini)
 {
 	// try to load the file
 	con.Printf(MM_INFO, "Loading console font config: %s... ", confontini.c_str());
@@ -2005,7 +2005,7 @@ void GUIApp::writeSaveInfo(ODataSource* ods)
 	game->writeSaveInfo(ods);
 }
 
-bool GUIApp::saveGame(std::string filename, std::string desc,
+bool GUIApp::saveGame(const std::string &filename, const std::string &desc,
 					  bool ignore_modals)
 {
 	// Don't allow saving with Modals open
@@ -2226,7 +2226,7 @@ bool GUIApp::newGame(const std::string &savegame)
 	return true;
 }
 
-bool GUIApp::loadGame(std::string filename)
+bool GUIApp::loadGame(const std::string &filename)
 {
 	con.Print(MM_INFO, "Loading...\n");
 
@@ -2380,8 +2380,9 @@ bool GUIApp::loadGame(std::string filename)
 	return true;
 }
 
-void GUIApp::Error(std::string message, std::string title, bool exit_to_menu)
+void GUIApp::Error(const std::string &message, const std::string &title_, bool exit_to_menu)
 {
+	std::string title(title_);
 	if (title.empty()) title = exit_to_menu?"Fatal Game Error":"Error";
 
 	perr << title << ": " << message << std::endl;

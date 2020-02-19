@@ -164,7 +164,7 @@ std::string GameInfo::getPrintableMD5() const
 	return ret;
 }
 
-bool GameInfo::match(GameInfo& other, bool ignoreMD5) const
+bool GameInfo::match(const GameInfo& other, bool ignoreMD5) const
 {
 	if (type != other.type) return false;
 	if (language != other.language) return false;
@@ -175,7 +175,7 @@ bool GameInfo::match(GameInfo& other, bool ignoreMD5) const
 	return (std::memcmp(md5, other.md5, 16) == 0);
 }
 
-void GameInfo::save(ODataSource* ods)
+void GameInfo::save(ODataSource* ods) const
 {
 	unsigned int l = static_cast<unsigned int>(language);
 	assert(l < (sizeof(gamelangs)/sizeof(gamelangs[0]))-1);

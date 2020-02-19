@@ -55,14 +55,14 @@ public:
 	void allow64kObjects();
 
 
-	void objectStats();
-	void objectTypes();
+	void objectStats() const;
+	void objectTypes() const;
 
 	void save(ODataSource* ods);
 	bool load(IDataSource* ids, uint32 version);
 
 	Object* loadObject(IDataSource* ids, uint32 version);
-	Object* loadObject(IDataSource* ids, std::string classname,uint32 version);
+	Object* loadObject(IDataSource* ids, const std::string &classname,uint32 version);
 
 	//! "ObjectManager::objectTypes" console command
 	static void ConCmd_objectTypes(const Console::ArgvType &argv);
@@ -76,7 +76,7 @@ public:
 private:
 	void setupLoaders();
 
-	void addObjectLoader(std::string classname, ObjectLoadFunc func)
+	void addObjectLoader(const std::string &classname, ObjectLoadFunc func)
 		{ objectloaders[classname] = func; }
 	std::map<std::string, ObjectLoadFunc> objectloaders;
 

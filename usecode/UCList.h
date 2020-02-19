@@ -56,12 +56,12 @@ class UCList
 		free();
 	}
 
-	const uint8* operator[](uint32 index) {
+	const uint8* operator[](uint32 index) const{
 		// check that index isn't out of bounds...
 		return &(elements[index * elementsize]);
 	}
 
-	uint16 getuint16(uint32 index) {
+	uint16 getuint16(uint32 index) const {
 		assert(elementsize == 2);
 		uint16 t = elements[index * elementsize];
 		t += elements[index * elementsize + 1] << 8;
@@ -91,7 +91,7 @@ class UCList
 		}
 	}
 
-	bool inList(const uint8* e) {
+	bool inList(const uint8* e) const {
 		for (unsigned int i = 0; i < size; i++) {
 			bool equal = true;
 			for (unsigned int j = 0; j < elementsize && equal; j++)
@@ -140,17 +140,17 @@ class UCList
 	void copyStringList(UCList& l);
 	void unionStringList(UCList& l);
 	void substractStringList(UCList& l);
-	bool stringInList(uint16 str);
+	bool stringInList(uint16 str) const;
 	void assignString(uint32 index, uint16 str);
 	void removeString(uint16 str, bool nodel=false);
 
-	uint16 getStringIndex(uint32 index);
+	uint16 getStringIndex(uint32 index) const;
 
-	void save(ODataSource* ods);
+	void save(ODataSource* ods) const;
 	bool load(IDataSource* ids, uint32 version);
 
 private:
-	std::string& getString(uint32 index);
+	const std::string& getString(uint32 index) const;
 };
 
 #endif

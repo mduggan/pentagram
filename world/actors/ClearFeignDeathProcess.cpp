@@ -61,7 +61,7 @@ void ClearFeignDeathProcess::run()
 	terminate();
 }
 
-void ClearFeignDeathProcess::saveData(ODataSource* ods)
+void ClearFeignDeathProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 }

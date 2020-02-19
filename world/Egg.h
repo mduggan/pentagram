@@ -47,7 +47,7 @@ public:
 	//! clear the 'hatched' flag
 	void reset() { hatched = false; }
 
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	bool loadData(IDataSource* ids, uint32 version);
 
@@ -59,7 +59,7 @@ public:
 	INTRINSIC(I_setEggId);
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	bool hatched;
 };

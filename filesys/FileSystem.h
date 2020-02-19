@@ -80,7 +80,7 @@ class FileSystem
 	//! \param mask the mask to match
 	//! \param files the FileList to which the found files are appended
 	//! \param return OS-specific (FIXME!)
-	int ListFiles(const std::string mask, FileList& files);
+	int ListFiles(const std::string &mask, FileList& files);
 
  private:
 	static void switch_slashes(std::string &name);
@@ -113,7 +113,7 @@ class FileSystem
 
 	// rewrite virtual path in-place (i.e., fvn is replaced)
 	// returns false if no rewriting was done
-	bool rewrite_virtual_path(std::string& vfn);
+	bool rewrite_virtual_path(std::string& vfn) const;
 
 	std::map<std::string, std::string> virtualpaths;
 

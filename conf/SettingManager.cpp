@@ -46,7 +46,7 @@ SettingManager::~SettingManager()
 	settingmanager = 0;
 }
 
-bool SettingManager::readConfigFile(std::string fname, bool readonly)
+bool SettingManager::readConfigFile(const std::string &fname, bool readonly)
 {
 	return conffileman->readConfigFile(fname, "settings", readonly);
 }
@@ -56,14 +56,14 @@ void SettingManager::write()
 	conffileman->write("settings");
 }
 
-bool SettingManager::exists(istring key, Domain dom)
+bool SettingManager::exists(const istring &key, Domain dom)
 {
 	Domain temp;
 
 	return findKeyDomain(key, dom, temp);
 }
 
-bool SettingManager::get(istring key, std::string &ret, Domain dom)
+bool SettingManager::get(const istring &key, std::string &ret, Domain dom)
 {
 	Domain keydom;
 	bool found = findKeyDomain(key, dom, keydom);
@@ -74,7 +74,7 @@ bool SettingManager::get(istring key, std::string &ret, Domain dom)
 	return true;
 }
 
-bool SettingManager::get(istring key, int &ret, Domain dom)
+bool SettingManager::get(const istring &key, int &ret, Domain dom)
 {
 	Domain keydom;
 	bool found = findKeyDomain(key, dom, keydom);
@@ -85,7 +85,7 @@ bool SettingManager::get(istring key, int &ret, Domain dom)
 	return true;
 }
 
-bool SettingManager::get(istring key, bool &ret, Domain dom)
+bool SettingManager::get(const istring &key, bool &ret, Domain dom)
 {
 	Domain keydom;
 	bool found = findKeyDomain(key, dom, keydom);
@@ -97,35 +97,35 @@ bool SettingManager::get(istring key, bool &ret, Domain dom)
 }
 
 
-void SettingManager::set(istring key, std::string value, Domain dom)
+void SettingManager::set(const istring &key, const std::string &value, Domain dom)
 {
 	conffileman->set(getConfigKey(key,dom), value);
 
 	callCallbacks(key);
 }
 
-void SettingManager::set(istring key, const char* value, Domain dom)
+void SettingManager::set(const istring &key, const char* value, Domain dom)
 {
 	conffileman->set(getConfigKey(key,dom), value);
 
 	callCallbacks(key);
 }
 
-void SettingManager::set(istring key, int value, Domain dom)
+void SettingManager::set(const istring &key, int value, Domain dom)
 {
 	conffileman->set(getConfigKey(key,dom), value);
 
 	callCallbacks(key);
 }
 
-void SettingManager::set(istring key, bool value, Domain dom)
+void SettingManager::set(const istring &key, bool value, Domain dom)
 {
 	conffileman->set(getConfigKey(key,dom), value);
 
 	callCallbacks(key);
 }
 
-void SettingManager::unset(istring key, Domain dom)
+void SettingManager::unset(const istring &key, Domain dom)
 {
 	conffileman->unset(getConfigKey(key,dom));
 
@@ -135,22 +135,22 @@ void SettingManager::unset(istring key, Domain dom)
 
 
 
-void SettingManager::setDefault(istring key, std::string value)
+void SettingManager::setDefault(const istring &key, const std::string &value)
 {
 	set(key, value, DOM_DEFAULTS);
 }
 
-void SettingManager::setDefault(istring key, const char* value)
+void SettingManager::setDefault(const istring &key, const char* value)
 {
 	set(key, value, DOM_DEFAULTS);
 }
 
-void SettingManager::setDefault(istring key, int value)
+void SettingManager::setDefault(const istring &key, int value)
 {
 	set(key, value, DOM_DEFAULTS);
 }
 
-void SettingManager::setDefault(istring key, bool value)
+void SettingManager::setDefault(const istring &key, bool value)
 {
 	set(key, value, DOM_DEFAULTS);
 }
@@ -162,7 +162,7 @@ void SettingManager::setCurrentDomain(Domain dom)
 	currentDomain = dom;
 }
 
-void SettingManager::setDomainName(Domain dom, istring section)
+void SettingManager::setDomainName(Domain dom, const istring &section)
 {
 	unsigned int d = static_cast<unsigned int>(dom);
 
@@ -170,12 +170,12 @@ void SettingManager::setDomainName(Domain dom, istring section)
 	domains[d] = section;
 }
 
-void SettingManager::registerCallback(istring key, ConfigCallback callback)
+void SettingManager::registerCallback(const istring &key, ConfigCallback callback)
 {
 	callbacks[key].push_back(callback);
 }
 
-void SettingManager::unregisterCallback(istring key, ConfigCallback callback)
+void SettingManager::unregisterCallback(const istring &key, ConfigCallback callback)
 {
 	std::map<istring, std::vector<ConfigCallback> >::iterator i;
 	i = callbacks.find(key);
@@ -201,8 +201,8 @@ std::vector<istring> SettingManager::listGames()
 
 	games.push_back("pentagram");
 
-	for (unsigned int i = 0; i < sections.size(); ++i) {
-		istring name = sections[i];
+	for (std::vector<istring>::const_iterator iter = sections.begin(); iter != sections.end(); ++iter) {
+		const istring &name = *iter;
 
 		istring pathkey = "settings/" + name + "/path";
 		if (name.find(':') == istring::npos && conffileman->exists(pathkey) && name != "pentagram")
@@ -212,21 +212,21 @@ std::vector<istring> SettingManager::listGames()
 	return games;
 }
 
-std::vector<istring> SettingManager::listDataKeys(istring section)
+std::vector<istring> SettingManager::listDataKeys(const istring &section) const
 {
 	istring csection = "settings/" + domains[DOM_GAME] + ":" + section;
 
 	return conffileman->listKeys(csection, false);
 }
 
-std::map<istring,std::string> SettingManager::listDataValues(istring section)
+std::map<istring,std::string> SettingManager::listDataValues(const istring &section) const
 {
 	istring csection = "settings/" + domains[DOM_GAME] + ":" + section;
 
 	return conffileman->listKeyValues(csection, false);
 }
 
-bool SettingManager::findKeyDomain(istring key, Domain dom, Domain& keydom)
+bool SettingManager::findKeyDomain(const istring &key, Domain dom, Domain& keydom) const
 {
 	// if domain is DOM_CURRENT we search through all domains below the
 	//    current domain.
@@ -247,7 +247,7 @@ bool SettingManager::findKeyDomain(istring key, Domain dom, Domain& keydom)
 	}
 }
 
-istring SettingManager::getConfigKey(istring key, Domain dom)
+istring SettingManager::getConfigKey(const istring &key, Domain dom) const
 {
 	istring ckey;
 
@@ -270,7 +270,7 @@ istring SettingManager::getConfigKey(istring key, Domain dom)
 	return ckey;
 }
 
-void SettingManager::callCallbacks(istring key)
+void SettingManager::callCallbacks(const istring &key)
 {
 	std::map<istring, std::vector<ConfigCallback> >::iterator i;
 	i = callbacks.find(key);

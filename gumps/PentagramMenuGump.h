@@ -89,7 +89,7 @@ private:
 	Texture* coversImage;
 	Texture* flagsImage;
 
-	void ProcessCallback(std::string gamename, int message);
+	void ProcessCallback(const std::string &gamename, int message);
 
 };
 

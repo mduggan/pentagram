@@ -42,7 +42,7 @@ ScrollGump::ScrollGump()
 
 }
 
-ScrollGump::ScrollGump(ObjId owner, std::string msg) :
+ScrollGump::ScrollGump(ObjId owner, const std::string &msg) :
 	ModalGump(0, 0, 100, 100, owner), text(msg)
 {
 }
@@ -106,7 +106,7 @@ uint32 ScrollGump::I_readScroll(const uint8* args, unsigned int /*argsize*/)
 	return gump->GetNotifyProcess()->getPid();
 }
 
-void ScrollGump::saveData(ODataSource* ods)
+void ScrollGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ModalGump");
 }

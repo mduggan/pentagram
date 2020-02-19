@@ -31,7 +31,7 @@ public:
 	ENABLE_RUNTIME_CLASSTYPE();
 
 	ReadableGump();
-	ReadableGump(ObjId owner, uint16 shape, int font, std::string msg);
+	ReadableGump(ObjId owner, uint16 shape, int font, const std::string &msg);
 	virtual ~ReadableGump();
 
 	// Close on mouse click on key press
@@ -46,7 +46,7 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif

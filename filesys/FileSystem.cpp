@@ -384,14 +384,14 @@ IDataSource* FileSystem::checkBuiltinData(const std::string& vfn, bool is_text)
 	return 0;
 }
 
-bool FileSystem::rewrite_virtual_path(string &vfn)
+bool FileSystem::rewrite_virtual_path(string &vfn) const
 {
 	bool ret = false;
 	string::size_type pos = vfn.size();
 
 	while ((pos = vfn.rfind('/', pos)) != std::string::npos) {
 //		perr << vfn << ", " << vfn.substr(0, pos) << ", " << pos << std::endl;
-		std::map<string, string>::iterator p = virtualpaths.find(
+		std::map<string, string>::const_iterator p = virtualpaths.find(
 			vfn.substr(0, pos));
 
 		if (p != virtualpaths.end()) {

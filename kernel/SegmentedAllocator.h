@@ -37,7 +37,7 @@ public:
 
 	virtual void freeResources();
 
-	virtual size_t getCapacity() {return nodeCapacity;}
+	virtual size_t getCapacity() const { return nodeCapacity; }
 
 	void printInfo();
 

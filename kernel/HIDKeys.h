@@ -206,7 +206,7 @@ enum HID_Key {
 };
 
 const char *HID_GetKeyName(HID_Key key);
-HID_Key HID_GetKeyFromName(Pentagram::istring & name);
+HID_Key HID_GetKeyFromName(const Pentagram::istring & name);
 
 HID_Key HID_translateSDLKey(SDLKey key);
 HID_Key HID_translateSDLMouseButton(uint8 button);
@@ -222,6 +222,6 @@ enum HID_Event {
 };
 
 const char *HID_GetEventName(HID_Event event);
-HID_Event HID_GetEventFromName(Pentagram::istring & name);
+HID_Event HID_GetEventFromName(const Pentagram::istring & name);
 
 #endif

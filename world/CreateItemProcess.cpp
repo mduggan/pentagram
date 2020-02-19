@@ -61,7 +61,7 @@ void CreateItemProcess::run()
 	terminate();
 }
 
-void CreateItemProcess::saveData(ODataSource* ods)
+void CreateItemProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

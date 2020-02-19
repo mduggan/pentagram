@@ -115,7 +115,7 @@ uint32 SpriteProcess::I_createSprite(const uint8* args, unsigned int argsize)
 	return Kernel::get_instance()->addProcess(p);
 }
 
-void SpriteProcess::saveData(ODataSource* ods)
+void SpriteProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

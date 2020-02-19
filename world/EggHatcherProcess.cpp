@@ -96,7 +96,7 @@ void EggHatcherProcess::run()
 	if (!nearteleporter) av->setJustTeleported(false); // clear flag
 }
 
-void EggHatcherProcess::saveData(ODataSource* ods)
+void EggHatcherProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 }

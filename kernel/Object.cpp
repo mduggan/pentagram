@@ -57,7 +57,7 @@ void Object::clearObjId()
 	objid = 0xFFFF;
 }
 
-void Object::dumpInfo()
+void Object::dumpInfo() const
 {
 	pout << "Object " << getObjId() << " (class "
 		 << GetClassType().class_name << ")" << std::endl;
@@ -72,13 +72,13 @@ ProcId Object::callUsecode(uint16 classid, uint16 offset,
 }
 
 
-void Object::save(ODataSource* ods)
+void Object::save(ODataSource* ods) const
 {
 	writeObjectHeader(ods);
 	saveData(ods); // virtual
 }
 
-void Object::writeObjectHeader(ODataSource* ods)
+void Object::writeObjectHeader(ODataSource* ods) const
 {
 	const char* cname = GetClassType().class_name; // note: virtual
 	uint16 clen = strlen(cname);
@@ -87,7 +87,7 @@ void Object::writeObjectHeader(ODataSource* ods)
 	ods->write(cname, clen);
 }
 
-void Object::saveData(ODataSource* ods)
+void Object::saveData(ODataSource* ods) const
 {
 	// note: Object is unversioned. If we ever want to version it,
 	// increase the global savegame version

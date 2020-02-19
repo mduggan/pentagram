@@ -24,12 +24,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "IDataSource.h"
 #include "ODataSource.h"
 
-uint16 UCList::getStringIndex(uint32 index)
+uint16 UCList::getStringIndex(uint32 index) const
 {
 	return elements[index*2] + (elements[index*2+1]<<8);
 }
 
-std::string& UCList::getString(uint32 index)
+const std::string& UCList::getString(uint32 index) const
 {
 	uint16 sindex = getStringIndex(index);
 	return UCMachine::get_instance()->getString(sindex);
@@ -79,9 +79,9 @@ void UCList::substractStringList(UCList& l)
 		removeString(l.getStringIndex(i));
 }
 
-bool UCList::stringInList(uint16 s)
+bool UCList::stringInList(uint16 s) const
 {
-	std::string str = UCMachine::get_instance()->getString(s);
+	const std::string &str = UCMachine::get_instance()->getString(s);
 	for (unsigned int i = 0; i < size; i++)
 		if (getString(i) == str)
 			return true;
@@ -119,7 +119,7 @@ void UCList::removeString(uint16 s, bool nodel)
 	}
 }
 
-void UCList::save(ODataSource* ods)
+void UCList::save(ODataSource* ods) const
 {
 	ods->write4(elementsize);
 	ods->write4(size);

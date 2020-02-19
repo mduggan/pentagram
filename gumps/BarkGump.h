@@ -35,7 +35,7 @@ public:
 	ENABLE_RUNTIME_CLASSTYPE();
 
 	BarkGump();
-	BarkGump(uint16 owner, std::string msg, uint32 speechshapenum=0);
+	BarkGump(uint16 owner, const std::string &msg, uint32 speechshapenum=0);
 	virtual ~BarkGump(void);
 
 	// Run the gump (decrement the counter)
@@ -57,7 +57,7 @@ protected:
 public:
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif //BARKGUMP_H_INCLUDED

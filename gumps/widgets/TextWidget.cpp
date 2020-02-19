@@ -36,7 +36,7 @@ TextWidget::TextWidget()
 
 }
 
-TextWidget::TextWidget(int X, int Y, std::string txt, bool gamefont_, int font,
+TextWidget::TextWidget(int X, int Y, const std::string &txt, bool gamefont_, int font,
 					   int w, int h, Font::TextAlign align) :
 	Gump(X, Y, w, h), text(txt), gamefont(gamefont_), fontnum(font),
 	blendColour(0), current_start(0), current_end(0),
@@ -218,7 +218,7 @@ Gump* TextWidget::OnMouseMotion(int mx, int my)
 }
 
 
-void TextWidget::saveData(ODataSource* ods)
+void TextWidget::saveData(ODataSource* ods) const
 {
 	Gump::saveData(ods);
 

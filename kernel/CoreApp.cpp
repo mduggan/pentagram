@@ -307,7 +307,7 @@ void CoreApp::killGame()
 }
 
 
-bool CoreApp::getGameInfo(Pentagram::istring& game, GameInfo* ginfo)
+bool CoreApp::getGameInfo(const Pentagram::istring& game, GameInfo* ginfo)
 {
 	// first try getting the information from the config file
 	// if that fails, try to autodetect it
@@ -443,7 +443,7 @@ void CoreApp::helpMe()
 	con.Print("\t--game {name}\t- select a game\n");
 }
 
-GameInfo* CoreApp::getGameInfo(Pentagram::istring game) const
+GameInfo* CoreApp::getGameInfo(const Pentagram::istring &game) const
 {
 	std::map<Pentagram::istring, GameInfo*>::const_iterator i;
 	i = games.find(game);

@@ -36,7 +36,7 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	sint32 from_x, from_y, from_z;
 	sint32 to_x, to_y, to_z;

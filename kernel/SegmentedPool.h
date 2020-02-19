@@ -44,14 +44,14 @@ public:
 	virtual void * allocate(size_t size);
 	virtual void deallocate(void * ptr);
 
-	virtual bool isFull() {return freeNodeCount == 0;}
-	virtual bool isEmpty() {return freeNodeCount == nodes;}
+	virtual bool isFull() const {return freeNodeCount == 0;}
+	virtual bool isEmpty() const {return freeNodeCount == nodes;}
 
-	virtual bool inPool(void * ptr) {return (ptr > startOfPool && ptr < endOfPool);}
+	virtual bool inPool(void * ptr) const {return (ptr > startOfPool && ptr < endOfPool);}
 
 	void printInfo();
 
-	size_t getNodeCapacity() {return nodeCapacity;}
+	size_t getNodeCapacity() const {return nodeCapacity;}
 
 	SegmentedPoolNode* getPoolNode(void * ptr);
 private:

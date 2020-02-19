@@ -77,7 +77,7 @@ void ActorBarkNotifyProcess::run()
 	waitFor(delaypid);
 }
 
-void ActorBarkNotifyProcess::saveData(ODataSource* ods)
+void ActorBarkNotifyProcess::saveData(ODataSource* ods) const
 {
 	GumpNotifyProcess::saveData(ods);
 }

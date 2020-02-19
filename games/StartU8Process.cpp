@@ -107,7 +107,7 @@ void StartU8Process::run()
 	terminate();
 }
 
-void StartU8Process::saveData(ODataSource* ods)
+void StartU8Process::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN();
 

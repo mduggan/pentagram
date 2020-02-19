@@ -213,7 +213,7 @@ uint32 GrantPeaceProcess::I_castGrantPeace(const uint8* args,
 	return 0;
 }
 
-void GrantPeaceProcess::saveData(ODataSource* ods)
+void GrantPeaceProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

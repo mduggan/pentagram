@@ -301,7 +301,7 @@ uint16 CameraProcess::FindRoof(sint32 factor)
 	return roofid;
 }
 
-void CameraProcess::saveData(ODataSource* ods)
+void CameraProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

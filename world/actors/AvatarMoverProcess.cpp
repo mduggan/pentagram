@@ -865,7 +865,7 @@ void AvatarMoverProcess::OnMouseUp(int button)
 }
 
 
-void AvatarMoverProcess::saveData(ODataSource* ods)
+void AvatarMoverProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

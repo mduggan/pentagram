@@ -45,7 +45,7 @@ public:
 
 	void execProcess(UCProcess* proc);
 
-	std::string& getString(uint16 str);
+	const std::string& getString(uint16 str) const;
 	UCList* getList(uint16 l);
 
 	void freeString(uint16 s);
@@ -67,9 +67,9 @@ public:
 	bool assignPointer(uint32 ptr, const uint8* data, uint32 size);
 	bool dereferencePointer(uint32 ptr, uint8* data, uint32 size);
 
-	void saveGlobals(ODataSource* ods);
-	void saveStrings(ODataSource* ods);
-	void saveLists(ODataSource* ods);
+	void saveGlobals(ODataSource* ods) const;
+	void saveStrings(ODataSource* ods) const;
+	void saveLists(ODataSource* ods) const;
 
 	bool loadGlobals(IDataSource* ids, uint32 version);
 	bool loadStrings(IDataSource* ids, uint32 version);

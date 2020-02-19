@@ -48,7 +48,7 @@ public:
 
 	bool				loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void 		saveData(ODataSource* ods);
+	virtual void 		saveData(ODataSource* ods) const;
 
 	virtual void		GetItemLocation(sint32 lerp_factor);
 

@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace Pentagram {
 
-template<class T> T to_uppercase(const T s)
+template<class T> T to_uppercase(const T &s)
 {
 	T str = s;
 	typename T::iterator X;
@@ -36,8 +36,8 @@ template<class T> T to_uppercase(const T s)
 	return str;
 }
 
-template std::string to_uppercase<std::string>(const std::string s);
-template Pentagram::istring to_uppercase<Pentagram::istring>(const Pentagram::istring s);
+template std::string to_uppercase<std::string>(const std::string &s);
+template Pentagram::istring to_uppercase<Pentagram::istring>(const Pentagram::istring &s);
 
 template<class T> void StringToArgv(const T &args, std::vector<T> &argv)
 {

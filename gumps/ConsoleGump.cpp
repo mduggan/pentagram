@@ -238,7 +238,7 @@ void ConsoleGump::ConCmd_toggle(const Console::ArgvType &argv)
 	consoleGump->ToggleConsole();
 }
 
-void ConsoleGump::saveData(ODataSource* ods)
+void ConsoleGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ConsoleGump");
 }

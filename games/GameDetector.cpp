@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "gamemd5.h"
 
-bool GameDetector::detect(std::string path, GameInfo *info)
+bool GameDetector::detect(const std::string &path, GameInfo *info)
 {
 	FileSystem* fs = FileSystem::get_instance();
 	if (!fs->AddVirtualPath("@detect", path))

@@ -625,13 +625,13 @@ void ActorAnimProcess::terminate()
 	Process::terminate();
 }
 
-void ActorAnimProcess::dumpInfo()
+void ActorAnimProcess::dumpInfo() const
 {
 	Process::dumpInfo();
 	pout << "action: " << action << ", dir: " << dir << std::endl;
 }
 
-void ActorAnimProcess::saveData(ODataSource* ods)
+void ActorAnimProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

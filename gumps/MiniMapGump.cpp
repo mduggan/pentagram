@@ -205,7 +205,7 @@ uint16 MiniMapGump::TraceObjId(int mx, int my)
 	return objid;
 }
 
-void MiniMapGump::saveData(ODataSource* ods)
+void MiniMapGump::saveData(ODataSource* ods) const
 {
 	Gump::saveData(ods);
 }

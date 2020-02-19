@@ -87,7 +87,7 @@ uint16 MonsterEgg::hatch()
 	return objID;
 }
 
-void MonsterEgg::saveData(ODataSource* ods)
+void MonsterEgg::saveData(ODataSource* ods) const
 {
 	Item::saveData(ods);
 }

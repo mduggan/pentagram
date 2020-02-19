@@ -37,7 +37,7 @@ BarkGump::BarkGump()
 
 }
 
-BarkGump::BarkGump(uint16 owner, std::string msg, uint32 speechshapenum_) :
+BarkGump::BarkGump(uint16 owner, const std::string &msg, uint32 speechshapenum_) :
 	ItemRelativeGump(0, 0, 100, 100, owner,
 					 FLAG_KEEP_VISIBLE, LAYER_ABOVE_NORMAL),
 	barked(msg), counter(100), speechshapenum(speechshapenum_),
@@ -181,7 +181,7 @@ Gump *BarkGump::OnMouseDown(int button, int mx, int my)
 	return this;
 }
 
-void BarkGump::saveData(ODataSource* ods)
+void BarkGump::saveData(ODataSource* ods) const
 {
 	ItemRelativeGump::saveData(ods);
 

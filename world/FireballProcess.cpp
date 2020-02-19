@@ -202,7 +202,7 @@ uint32 FireballProcess::I_TonysBalls(const uint8* args,
 	return 0;
 }
 
-void FireballProcess::saveData(ODataSource* ods)
+void FireballProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

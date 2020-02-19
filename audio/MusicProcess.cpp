@@ -258,7 +258,7 @@ void MusicProcess::run()
 	}
 }
 
-void MusicProcess::saveData(ODataSource* ods)
+void MusicProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

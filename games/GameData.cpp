@@ -173,12 +173,12 @@ void GameData::loadTranslation()
 	}
 }
 
-std::string GameData::translate(std::string text)
+std::string GameData::translate(const std::string &text)
 {
 	// TODO: maybe cache these lookups? config calls may be expensive
 
 	ConfigFileManager* config = ConfigFileManager::get_instance();
-	Pentagram::istring key = "language/text/" + text;
+	const Pentagram::istring key = "language/text/" + text;
 	if (!config->exists(key))
 		return text;
 
@@ -391,7 +391,7 @@ void GameData::setupJPOverrides()
 	ConfigFileManager* config = ConfigFileManager::get_instance();
 	FontManager* fontmanager = FontManager::get_instance();
 	std::map<Pentagram::istring, std::string> jpkeyvals;
-	std::map<Pentagram::istring, std::string>::iterator iter;
+	std::map<Pentagram::istring, std::string>::const_iterator iter;
 
 	jpkeyvals = config->listKeyValues("language/jpfonts");
 	for (iter = jpkeyvals.begin(); iter != jpkeyvals.end(); ++iter)
@@ -428,7 +428,7 @@ void GameData::setupTTFOverrides(const char* configkey, bool SJIS)
 	SettingManager* settingman = SettingManager::get_instance();
 	FontManager* fontmanager = FontManager::get_instance();
 	std::map<Pentagram::istring, std::string> ttfkeyvals;
-	std::map<Pentagram::istring, std::string>::iterator iter;
+	std::map<Pentagram::istring, std::string>::const_iterator iter;
 
 	bool ttfoverrides = false;
 	settingman->get("ttf", ttfoverrides);
@@ -438,7 +438,7 @@ void GameData::setupTTFOverrides(const char* configkey, bool SJIS)
 	for (iter = ttfkeyvals.begin(); iter != ttfkeyvals.end(); ++iter)
 	{
 		int fontnum = std::atoi(iter->first.c_str());
-		std::string fontdesc = iter->second;
+		const std::string &fontdesc = iter->second;
 
 		std::vector<std::string> vals;
 		Pentagram::SplitString(fontdesc, ',', vals);

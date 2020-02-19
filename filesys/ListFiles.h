@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <malloc.h>
 #include <tchar.h>
 
-int FileSystem::ListFiles(const std::string mask, FileList& files)
+int FileSystem::ListFiles(const std::string &mask, FileList& files)
 {
 	std::string		path(mask);
 	const TCHAR		*lpszT;
@@ -133,7 +133,7 @@ int FileSystem::ListFiles(const std::string mask, FileList& files)
 
 #include <glob.h>
 
-int FileSystem::ListFiles(const std::string mask, FileList& files)
+int FileSystem::ListFiles(const std::string &mask, FileList& files)
 
 {
 	glob_t globres;

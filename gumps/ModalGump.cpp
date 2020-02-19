@@ -100,7 +100,7 @@ Gump* ModalGump::OnMouseDown(int button, int mx, int my)
 }
 
 
-void ModalGump::saveData(ODataSource* ods)
+void ModalGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ModalGump");
 }

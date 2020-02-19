@@ -47,7 +47,7 @@ public:
 
 	bool loadData(IDataSource* ids);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	std::vector<std::pair<std::string,ShapeArchive*> > flexes;	
 	unsigned int curflex;

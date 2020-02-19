@@ -121,7 +121,7 @@ public:
 	bool loadData(IDataSource* ids, uint32 version);
 
 private:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 	uint32 paused;
 
 	//! play the next speech sample for the text in this SampleInfo

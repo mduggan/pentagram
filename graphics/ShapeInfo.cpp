@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "ShapeInfo.h"
 #include "CoreApp.h"
 
-bool ShapeInfo::getTypeFlag(int typeflag)
+bool ShapeInfo::getTypeFlag(int typeflag) const
 {
 	if (GAME_IS_U8)
 		return getTypeFlagU8(typeflag);
@@ -31,7 +31,7 @@ bool ShapeInfo::getTypeFlag(int typeflag)
 	return false;
 }
 
-bool ShapeInfo::getTypeFlagU8(int typeflag)
+bool ShapeInfo::getTypeFlagU8(int typeflag) const
 {
 	// This is not nice. The Typeflags in U8 were stored in an 8 byte array
 	// and they could access them with a number from 0 to 63
@@ -92,7 +92,7 @@ bool ShapeInfo::getTypeFlagU8(int typeflag)
 	return false;
 }
 
-bool ShapeInfo::getTypeFlagCrusader(int typeflag)
+bool ShapeInfo::getTypeFlagCrusader(int typeflag) const
 {
 	if (typeflag <= 11)			// flags		Byte 0, 1:0-3	Bits  0-11
 	{

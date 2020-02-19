@@ -52,7 +52,7 @@ public:
 
 	bool loadData(IDataSource* ids);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	SKFPlayer* player;
 };

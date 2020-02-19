@@ -97,7 +97,7 @@ bool BindGump::loadData(IDataSource* ids)
 	return true;
 }
 
-void BindGump::saveData(ODataSource* ods)
+void BindGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ModalGump");
 }

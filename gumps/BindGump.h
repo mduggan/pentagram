@@ -47,7 +47,7 @@ public:
 		UPDATE = 10
 	};
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 	Pentagram::istring * binding;
 	Gump * invoker;
 };

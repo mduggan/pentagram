@@ -152,7 +152,7 @@ void UCProcess::terminate()
 	Process::terminate();
 }
 
-void UCProcess::dumpInfo()
+void UCProcess::dumpInfo() const
 {
 	Process::dumpInfo();
 
@@ -165,7 +165,7 @@ void UCProcess::dumpInfo()
 	}
 }
 
-void UCProcess::saveData(ODataSource* ods)
+void UCProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 
@@ -174,7 +174,7 @@ void UCProcess::saveData(ODataSource* ods)
 	ods->write2(ip);
 	ods->write4(temp32);
 	ods->write4(static_cast<uint32>(freeonterminate.size()));
-	std::list<std::pair<uint16, int> >::iterator iter;
+	std::list<std::pair<uint16, int> >::const_iterator iter;
 	for (iter = freeonterminate.begin(); iter != freeonterminate.end(); ++iter)
 	{
 		ods->write2(iter->first);

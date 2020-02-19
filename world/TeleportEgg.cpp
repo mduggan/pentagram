@@ -52,7 +52,7 @@ uint16 TeleportEgg::hatch()
 	return 0;
 }
 
-void TeleportEgg::saveData(ODataSource* ods)
+void TeleportEgg::saveData(ODataSource* ods) const
 {
 	Egg::saveData(ods);
 }

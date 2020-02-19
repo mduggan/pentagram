@@ -61,9 +61,9 @@ struct GameInfo {
 	std::string getPrintDetails() const;
 	std::string getPrintableMD5() const;
 
-	bool match(GameInfo& other, bool ignoreMD5=false) const;
+	bool match(const GameInfo& other, bool ignoreMD5=false) const;
 
-	void save(ODataSource* ods);
+	void save(ODataSource* ods) const;
 	bool load(IDataSource* ids, uint32 version);
 };
 

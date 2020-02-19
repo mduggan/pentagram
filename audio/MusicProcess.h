@@ -59,7 +59,7 @@ public:
 	static void ConCmd_playMusic(const Console::ArgvType &argv);
 
 private:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	//! Play a music track
 	//! \param track The track number to play. Pass 0 to stop music

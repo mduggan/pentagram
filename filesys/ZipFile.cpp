@@ -133,14 +133,14 @@ bool ZipFile::readMetadata()
 
 bool ZipFile::exists(const std::string& name)
 {
-	std::map<std::string, uint32>::iterator iter;
+	std::map<std::string, uint32>::const_iterator iter;
 	iter = sizes.find(name);
 	return (iter != sizes.end());
 }
 
 uint32 ZipFile::getSize(const std::string& name)
 {
-	std::map<std::string, uint32>::iterator iter;
+	std::map<std::string, uint32>::const_iterator iter;
 	iter = sizes.find(name);
 	if (iter == sizes.end()) return 0;
 	return (iter->second);

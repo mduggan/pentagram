@@ -35,7 +35,7 @@ public:
 
 	virtual uint32 getSize(const std::string& name);
 
-	virtual uint32 getCount() { return count; }
+	virtual uint32 getCount() const { return count; }
 
 protected:
 	bool readMetadata();

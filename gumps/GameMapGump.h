@@ -82,7 +82,7 @@ public:
 	virtual void		RenderSurfaceChanged();
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	bool display_dragging;
 	uint32 dragging_shape;

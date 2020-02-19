@@ -49,7 +49,7 @@ void TeleportToEggProcess::run()
 	terminate();
 }
 
-void TeleportToEggProcess::saveData(ODataSource* ods)
+void TeleportToEggProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 	

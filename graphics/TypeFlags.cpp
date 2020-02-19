@@ -177,10 +177,10 @@ void TypeFlags::loadWeaponInfo()
 	// load weapons
 	std::vector<Pentagram::istring> weaponkeys;
 	weaponkeys = config->listSections("weapons", true);	
-	for (std::vector<Pentagram::istring>::iterator iter = weaponkeys.begin();
+	for (std::vector<Pentagram::istring>::const_iterator iter = weaponkeys.begin();
 		 iter != weaponkeys.end(); ++iter)
 	{
-		Pentagram::istring k = *iter;
+		const Pentagram::istring &k = *iter;
 		WeaponInfo* wi = new WeaponInfo;
 
 		int val;
@@ -231,10 +231,10 @@ void TypeFlags::loadArmourInfo()
 	// load armour
 	std::vector<Pentagram::istring> armourkeys;
 	armourkeys = config->listSections("armour", true);	
-	for (std::vector<Pentagram::istring>::iterator iter = armourkeys.begin();
+	for (std::vector<Pentagram::istring>::const_iterator iter = armourkeys.begin();
 		 iter != armourkeys.end(); ++iter)
 	{
-		Pentagram::istring k = *iter;
+		const Pentagram::istring &k = *iter;
 		ArmourInfo ai;
 
 		int val;

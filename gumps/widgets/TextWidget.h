@@ -51,7 +51,7 @@ public:
 	ENABLE_RUNTIME_CLASSTYPE();
 
 	TextWidget();
-	TextWidget(int X, int Y, std::string txt, bool gamefont, int fontnum,
+	TextWidget(int X, int Y, const std::string &txt, bool gamefont, int fontnum,
 			   int width = 0, int height = 0,
 			   Font::TextAlign align = Font::TEXT_LEFT);
 	virtual ~TextWidget(void);
@@ -95,7 +95,7 @@ public:
 	bool loadData(IDataSource* ids, uint32 version);
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif

@@ -37,7 +37,7 @@ ButtonWidget::ButtonWidget()
 {
 }
 
-ButtonWidget::ButtonWidget(int X, int Y, std::string txt, bool gamefont,
+ButtonWidget::ButtonWidget(int X, int Y, const std::string &txt, bool gamefont,
 						   int font, uint32 mouseOverBlendCol_,
 						   int w, int h, sint32 layer) :
 	Gump(X,Y,w,h,0,0,layer), shape_up(0), shape_down(0),
@@ -192,7 +192,7 @@ void ButtonWidget::OnMouseLeft()
 	}
 }
 
-void ButtonWidget::saveData(ODataSource* ods)
+void ButtonWidget::saveData(ODataSource* ods) const
 {
 	// HACK ALERT
 	int w=0, h=0;

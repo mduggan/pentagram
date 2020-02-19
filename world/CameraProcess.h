@@ -76,7 +76,7 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 private:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	sint32 sx, sy, sz;
 	sint32 ex, ey, ez;

@@ -160,13 +160,13 @@ bool AudioProcess::continueSpeech(SampleInfo& si)
 }
 
 
-void AudioProcess::saveData(ODataSource* ods)
+void AudioProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 
 	ods->write1(static_cast<uint8>(sample_info.size()));
 
-	std::list<SampleInfo>::iterator it;
+	std::list<SampleInfo>::const_iterator it;
 	for (it = sample_info.begin(); it != sample_info.end(); ++it) {
 		ods->write2(it->sfxnum);
 		ods->write2(it->priority);

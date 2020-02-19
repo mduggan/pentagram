@@ -72,7 +72,7 @@ void AvatarDeathProcess::run()
 	terminate();
 }
 
-void AvatarDeathProcess::saveData(ODataSource* ods)
+void AvatarDeathProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 }

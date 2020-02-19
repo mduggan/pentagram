@@ -46,7 +46,7 @@ protected:
 	sint32				x, y;			// Gump's position in parent.
 										// Always the upper left corner!
 
-	Pentagram::Rect		dims;			// The dimensions/coord space of the gump
+	mutable Pentagram::Rect		dims;			// The dimensions/coord space of the gump // HACK: mutable because ButtonWidget has a hack to modify during save operation
 	uint32				flags;			// Gump flags
 	sint32				layer;			// gump ordering layer
 
@@ -75,7 +75,7 @@ public:
 	virtual void				CreateNotifier();
 	void						SetNotifyProcess(GumpNotifyProcess* proc);
 	GumpNotifyProcess*			GetNotifyProcess();
-	inline uint32				GetResult() { return process_result; }
+	inline uint32				GetResult() const { return process_result; }
 	void						SetResult(uint32 res) { process_result = res; }
 
 	//! Set the Gump's shape/frame
@@ -305,7 +305,7 @@ public:
 	virtual void		MakeFocus();
 
 	// Is this gump the focus?
-	inline bool			IsFocus()
+	inline bool			IsFocus() const
 		{ return parent?parent->focus_child==this:false; }
 
 	// Get the child in focus
@@ -338,7 +338,7 @@ public:
 	//! Think of it as a generic call back function
 	virtual void		ChildNotify(Gump *child, uint32 message) { }
 	void				SetIndex(sint32 i) { index = i; }
-	sint32				GetIndex() { return index; }
+	sint32				GetIndex() const { return index; }
 
 	// Dragging
 	//! Called when a child gump starts to be dragged.
@@ -392,13 +392,13 @@ public:
 										// (only for ItemRelativeGumps)
 	};
 
-	inline bool			IsHidden()
+	inline bool			IsHidden() const
 		{ return (flags&FLAG_HIDDEN) || (parent && parent->IsHidden()); }
-	bool				IsDraggable() { return flags&FLAG_DRAGGABLE; }
+	bool				IsDraggable() const { return flags&FLAG_DRAGGABLE; }
 	virtual void		HideGump() { flags |= FLAG_HIDDEN; }
 	virtual void		UnhideGump() { flags &= ~FLAG_HIDDEN; }
 
-	bool mustSave(bool toplevel);
+	bool mustSave(bool toplevel) const;
 
 	//
 	// Gump Layers
@@ -414,7 +414,7 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif //GUMP_H_INCLUDED

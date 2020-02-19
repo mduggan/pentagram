@@ -60,7 +60,7 @@ uint16 SlidingWidget::TraceObjId(int mx, int my)
 		return 0;
 }
 
-void SlidingWidget::saveData(ODataSource* ods)
+void SlidingWidget::saveData(ODataSource* ods) const
 {
 	Gump::saveData(ods);
 }

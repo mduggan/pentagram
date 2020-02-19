@@ -143,11 +143,11 @@ public:
 	//! Create an Instance of a MidiDriver
 	//! \param driverName Name of the prefered driver to create
 	//! \return The created MidiDriver instance
-	static MidiDriver	*createInstance(std::string driverName,uint32 sample_rate,bool stereo);
+	static MidiDriver	*createInstance(const std::string &driverName,uint32 sample_rate,bool stereo);
 
 protected:
 	//! Get a configuration setting for the midi driver
-	std::string getConfigSetting(std::string name, std::string defaultval);
+	std::string getConfigSetting(const std::string &name, const std::string &defaultval);
 };
 
 #endif //MIDIDRIVER_H_INCLUDED

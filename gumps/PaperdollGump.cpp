@@ -143,7 +143,7 @@ void PaperdollGump::Close(bool no_del)
 }
 
 void PaperdollGump::PaintStat(RenderSurface* surf, unsigned int n,
-							  std::string text, int val)
+							  const std::string &text, int val)
 {
 	assert(n < 7); // constant!
 
@@ -423,7 +423,7 @@ void PaperdollGump::ChildNotify(Gump *child, uint32 message)
 }
 
 
-void PaperdollGump::saveData(ODataSource* ods)
+void PaperdollGump::saveData(ODataSource* ods) const
 {
 	ContainerGump::saveData(ods);
 

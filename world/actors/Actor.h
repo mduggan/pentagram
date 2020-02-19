@@ -93,15 +93,15 @@ public:
 	uint16 schedule(uint32 time);
 
 	bool setEquip(Item* item, bool checkwghtvol=false);
-	uint16 getEquip(uint32 type);
+	uint16 getEquip(uint32 type) const;
 
-	virtual uint32 getArmourClass();
-	virtual uint16 getDefenseType();
-	virtual sint16 getAttackingDex();
-	virtual sint16 getDefendingDex();
+	virtual uint32 getArmourClass() const;
+	virtual uint16 getDefenseType() const;
+	virtual sint16 getAttackingDex() const;
+	virtual sint16 getDefendingDex() const;
 
-	virtual uint16 getDamageType();
-	virtual int getDamageAmount();
+	virtual uint16 getDamageType() const;
+	virtual int getDamageAmount() const;
 
 	//! calculate the damage an attack against this Actor does.
 	//! \param other the attacker (can be zero)
@@ -155,7 +155,7 @@ public:
 
 	virtual uint16 assignObjId(); // assign an NPC objid
 
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	bool loadData(IDataSource* ids, uint32 version);
 
@@ -233,7 +233,7 @@ public:
 	};
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	sint16 strength;
 	sint16 dexterity;

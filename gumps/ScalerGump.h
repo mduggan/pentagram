@@ -52,7 +52,7 @@ public:
 							  PointRoundDir r = ROUND_TOPLEFT);
 	
 	void GetScaledSize(sint32 &sw, sint32 &sh) const { sw = swidth1; sh = sheight1; }
-	void ChangeScaler(std::string scalername, int scalex, int scaley);
+	void ChangeScaler(const std::string &scalername, int scalex, int scaley);
 
 protected:
 	int						swidth1;

@@ -32,7 +32,7 @@ struct FixedWidthFont {
 
 	~FixedWidthFont();
 
-	static FixedWidthFont * Create(std::string iniroot);
+	static FixedWidthFont * Create(const std::string &iniroot);
 };
 
 #endif // FIXEDWIDTHFONT_H

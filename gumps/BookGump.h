@@ -31,7 +31,7 @@ public:
 	ENABLE_RUNTIME_CLASSTYPE();
 
 	BookGump();
-	BookGump(ObjId owner, std::string msg);
+	BookGump(ObjId owner, const std::string &msg);
 	virtual ~BookGump();
 
 	// Go to the next page on mouse click
@@ -51,7 +51,7 @@ protected:
 public:
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif

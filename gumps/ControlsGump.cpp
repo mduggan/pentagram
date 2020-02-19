@@ -219,7 +219,7 @@ bool ControlsGump::loadData(IDataSource* ids)
 	return true;
 }
 
-void ControlsGump::saveData(ODataSource* ods)
+void ControlsGump::saveData(ODataSource* ods) const
 {
 }
 

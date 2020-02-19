@@ -45,53 +45,54 @@ class SettingManager
 	//! \param fname The file to read
 	//! \param readonly If true, don't write to this file's tree (or the file)
 	//! \return true if succesful
-	bool readConfigFile(std::string fname, bool readonly=false);
+	bool readConfigFile(const std::string &fname, bool readonly=false);
 
 	//! write all (writable) config files
 	void write();
 
 	//! does the key exist?
-	bool exists(Pentagram::istring key, Domain dom = DOM_CURRENT);
+	bool exists(const Pentagram::istring &key, Domain dom = DOM_CURRENT);
 
 	//! get value
-	bool get(Pentagram::istring key,std::string &ret,Domain dom = DOM_CURRENT);
+	bool get(const Pentagram::istring &key,std::string &ret,Domain dom = DOM_CURRENT);
 	//! get value
-	bool get(Pentagram::istring key, int &ret, Domain dom = DOM_CURRENT);
+	bool get(const Pentagram::istring &key, int &ret, Domain dom = DOM_CURRENT);
 	//! get value
-	bool get(Pentagram::istring key, bool &ret, Domain dom = DOM_CURRENT);
+	bool get(const Pentagram::istring &key, bool &ret, Domain dom = DOM_CURRENT);
 
 	//! set value
-	void set(Pentagram::istring key,std::string value,Domain dom=DOM_CURRENT);
+	void set(const Pentagram::istring &key, const std::string &value,Domain dom=DOM_CURRENT);
 	//! set value
-	void set(Pentagram::istring key,const char* value,Domain dom=DOM_CURRENT);
+	void set(const Pentagram::istring &key, const char* value,Domain dom=DOM_CURRENT);
 	//! set value
-	void set(Pentagram::istring key, int value, Domain dom = DOM_CURRENT);
+	void set(const Pentagram::istring &key, int value, Domain dom = DOM_CURRENT);
 	//! set value
-	void set(Pentagram::istring key, bool value, Domain dom = DOM_CURRENT);
+	void set(const Pentagram::istring &key, bool value, Domain dom = DOM_CURRENT);
 
 	//! remove key
-	void unset(Pentagram::istring key, Domain dom = DOM_CURRENT);
+	void unset(const Pentagram::istring &key, Domain dom = DOM_CURRENT);
 
 	//! set default value
-	void setDefault(Pentagram::istring key, std::string value);
+	void setDefault(const Pentagram::istring &key, const std::string &value);
 	//! set default value
-	void setDefault(Pentagram::istring key, const char* value);
+	void setDefault(const Pentagram::istring &key, const char* value);
 	//! set default value
-	void setDefault(Pentagram::istring key, int value);
+	void setDefault(const Pentagram::istring &key, int value);
 	//! set default value
-	void setDefault(Pentagram::istring key, bool value);
+	void setDefault(const Pentagram::istring &key, bool value);
 
 	//! set the current domain
 	void setCurrentDomain(Domain dom);
 	//! set the configuration section for a domain
-	void setDomainName(Domain dom, Pentagram::istring section);
+	void setDomainName(Domain dom, const Pentagram::istring &section);
 
-	typedef void (*ConfigCallback)(Pentagram::istring key);
+
+	typedef void (*ConfigCallback)(const Pentagram::istring &key);
 
 	//! register a function to be called when the key changes
-	void registerCallback(Pentagram::istring key, ConfigCallback callback);
+	void registerCallback(const Pentagram::istring &key, ConfigCallback callback);
 	//! unregister a callback
-	void unregisterCallback(Pentagram::istring key, ConfigCallback callback);
+	void unregisterCallback(const Pentagram::istring &key, ConfigCallback callback);
 
 	//! list all games
 	std::vector<Pentagram::istring> listGames();
@@ -99,19 +100,19 @@ class SettingManager
 	//! list all keys in a game data section
 	//! \param section The section to return setkeys of
 	//! \return the keys. They have no guaranteed order.
-	std::vector<Pentagram::istring> listDataKeys(Pentagram::istring section);
+	std::vector<Pentagram::istring> listDataKeys(const Pentagram::istring &section) const;
 
 	//! list all key-value pairs in the given section.
 	//! \param section The section to list
 	//! \return the key-value pairs. They have no guaranteed order.
 	std::map<Pentagram::istring,std::string> listDataValues(
-		Pentagram::istring section);
+		const Pentagram::istring &section) const;
 
 private:
 
-	bool findKeyDomain(Pentagram::istring key, Domain dom, Domain& keydom);
-	Pentagram::istring getConfigKey(Pentagram::istring key, Domain dom);
-	void callCallbacks(Pentagram::istring key);
+	bool findKeyDomain(const Pentagram::istring &key, Domain dom, Domain& keydom) const;
+	Pentagram::istring getConfigKey(const Pentagram::istring &key, Domain dom) const;
+	void callCallbacks(const Pentagram::istring &key);
 
 	std::map<Pentagram::istring, std::vector<ConfigCallback> > callbacks;
 	std::vector<Pentagram::istring> domains;

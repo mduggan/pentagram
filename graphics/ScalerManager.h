@@ -52,19 +52,19 @@ public:
 
 
 	//! Get the total Number of scalers
-	uint32 GetNumScalers();
+	uint32 GetNumScalers() const;
 
 	//! Get the Scaler Index from its name
-	uint32 GetIndexForName(const Pentagram::istring name);
+	uint32 GetIndexForName(const Pentagram::istring &name) const;
 
 	//! Get Name of a Scaler from its Index
-	const char *GetNameForIndex(uint32 index);
+	const char *GetNameForIndex(uint32 index) const;
 
 	//! Get a Scaler from its Index
 	const Pentagram::Scaler	*GetScaler(uint32 index);
 
 	//! Get a Scaler from its name
-	const Pentagram::Scaler	*GetScaler(const Pentagram::istring name);
+	const Pentagram::Scaler	*GetScaler(const Pentagram::istring &name);
 
 	//! Get the Point Sampling Scaler
 	const Pentagram::Scaler	*GetPointScaler();

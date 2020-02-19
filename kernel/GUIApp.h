@@ -80,11 +80,11 @@ public:
 	void startupGame();
 	void startupPentagramMenu();
 	void shutdownGame(bool reloading=true);
-	void changeGame(Pentagram::istring newgame);
+	void changeGame(const Pentagram::istring &newgame);
 	
 	// When in the Pentagram Menu, load minimal amount of data for the specific game
 	// Used to enable access to the games gumps and shapes
-	void menuInitMinimal(Pentagram::istring game);
+	void menuInitMinimal(const Pentagram::istring &game);
 
 	void changeVideoMode(int width, int height, int fullscreen=-1);	// -1 = no change, -2 = fullscreen toggle
 	RenderSurface *getScreen() { return screen; }
@@ -131,13 +131,13 @@ public:
 	//! save a game
 	//! \param filename the file to save to
 	//! \return true if succesful
-	bool saveGame(std::string filename, std::string desc,
+	bool saveGame(const std::string &filename, const std::string &desc,
 				  bool ignore_modals=false);
 
 	//! load a game
 	//! \param filename the savegame to load
 	//! \return true if succesful.
-	bool loadGame(std::string filename);
+	bool loadGame(const std::string &filename);
 
 	//! start a new game
 	//! \return true if succesful.
@@ -190,7 +190,7 @@ public:
 	//! Display an error message box
 	//! \param message The message to display on the box
 	//! \param exit_to_menu If true, then exit to the Pentagram menu then display the message
-	void Error(std::string message, std::string title=std::string(), bool exit_to_menu=false);
+	void Error(const std::string &message, const std::string &title=std::string(), bool exit_to_menu=false);
 
 protected:
 	virtual void DeclareArgs();
@@ -246,7 +246,7 @@ private:
 	
 	// called depending upon command line arguments
 	void GraphicSysInit(); // starts/restarts the graphics subsystem
-	bool LoadConsoleFont(std::string confontini); // loads the console font
+	bool LoadConsoleFont(const std::string &confontini); // loads the console font
 	
 	void handleDelayedEvents();
 	

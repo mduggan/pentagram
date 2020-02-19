@@ -75,7 +75,7 @@ void SchedulerProcess::run()
 	}
 }
 
-void SchedulerProcess::saveData(ODataSource* ods)
+void SchedulerProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

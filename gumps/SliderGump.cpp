@@ -262,7 +262,7 @@ void SliderGump::setUsecodeNotify(UCProcess* ucp)
 	usecodeNotifyPID = ucp->getPid();
 }
 
-void SliderGump::saveData(ODataSource* ods)
+void SliderGump::saveData(ODataSource* ods) const
 {
 	CANT_HAPPEN_MSG("Trying to save ModalGump");
 }

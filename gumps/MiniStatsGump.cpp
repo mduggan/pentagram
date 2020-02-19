@@ -133,7 +133,7 @@ void MiniStatsGump::OnMouseDouble(int button, int mx, int my)
 	Close();
 }
 
-void MiniStatsGump::saveData(ODataSource* ods)
+void MiniStatsGump::saveData(ODataSource* ods) const
 {
 	Gump::saveData(ods);
 }

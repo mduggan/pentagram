@@ -40,7 +40,7 @@ public:
 
 	virtual uint32 getSize(const std::string& name);
 
-	virtual uint32 getCount() { return count; }
+	virtual uint32 getCount() const { return count; }
 
 	static bool isU8SaveFile(IDataSource* ds);
 
@@ -54,7 +54,7 @@ protected:
 
 private:
 	bool readMetadata();
-	bool findIndex(const std::string& name, uint32& index);
+	bool findIndex(const std::string& name, uint32& index) const;
 };
 
 

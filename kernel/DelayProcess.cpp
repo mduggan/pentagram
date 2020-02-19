@@ -43,7 +43,7 @@ void DelayProcess::run()
 		terminate();
 }
 
-void DelayProcess::dumpInfo()
+void DelayProcess::dumpInfo() const
 {
 	Process::dumpInfo();
 	pout << "Frames left: " << count << std::endl;
@@ -59,7 +59,7 @@ bool DelayProcess::loadData(IDataSource* ids, uint32 version)
 	return true;
 }
 
-void DelayProcess::saveData(ODataSource* ods)
+void DelayProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 	ods->write4(static_cast<uint32>(count));

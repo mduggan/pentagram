@@ -50,7 +50,7 @@ public:
 
 	virtual void cache(uint32 shapenum);
 	virtual void uncache(uint32 shapenum);
-	virtual bool isCached(uint32 shapenum);
+	virtual bool isCached(uint32 shapenum) const;
 
 protected:
 	uint16 id;

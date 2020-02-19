@@ -124,7 +124,7 @@ void ObjectManager::reset()
 	actorIDs->clearAll();
 }
 
-void ObjectManager::objectStats()
+void ObjectManager::objectStats() const
 {
 	unsigned int i, npccount = 0, objcount = 0;
 
@@ -143,12 +143,12 @@ void ObjectManager::objectStats()
 	pout << "Objects    : " << objcount << "/32511" << std::endl;
 }
 
-void ObjectManager::objectTypes()
+void ObjectManager::objectTypes() const
 {
 	pout << "Current object types:" << std::endl;
 	std::map<std::string, unsigned int> objecttypes;
 	for (unsigned int i = 1; i < objects.size(); ++i) {
-		Object* o = objects[i];
+		const Object* o = objects[i];
 		if (!o) continue;
 		objecttypes[o->GetClassType().class_name]++;
 	}
@@ -347,7 +347,7 @@ Object* ObjectManager::loadObject(IDataSource* ids, uint32 version)
 	return loadObject(ids, classname, version);
 }
 
-Object* ObjectManager::loadObject(IDataSource* ids, std::string classname,
+Object* ObjectManager::loadObject(IDataSource* ids, const std::string &classname,
 								  uint32 version)
 {
 	std::map<std::string, ObjectLoadFunc>::iterator iter;

@@ -180,7 +180,7 @@ void ItemRelativeGump::Move(int x_, int y_)
 	y += y_;
 }
 
-void ItemRelativeGump::saveData(ODataSource* ods)
+void ItemRelativeGump::saveData(ODataSource* ods) const
 {
 	Gump::saveData(ods);
 }

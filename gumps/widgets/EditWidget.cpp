@@ -30,7 +30,7 @@
 
 DEFINE_RUNTIME_CLASSTYPE_CODE(EditWidget,Gump);
 
-EditWidget::EditWidget(int X, int Y, std::string txt, bool gamefont_, int font,
+EditWidget::EditWidget(int X, int Y, const std::string &txt, bool gamefont_, int font,
 					   int w, int h, unsigned int maxlength_, bool multiline_)
 	: Gump(X, Y, w, h), text(txt), gamefont(gamefont_), fontnum(font),
 	  maxlength(maxlength_), multiline(multiline_),
@@ -86,7 +86,7 @@ void EditWidget::ensureCursorVisible()
 	cursor_changed = SDL_GetTicks();
 }
 
-bool EditWidget::textFits(std::string& t)
+bool EditWidget::textFits(const std::string& t)
 {
 	Pentagram::Font *font = getFont();
 	

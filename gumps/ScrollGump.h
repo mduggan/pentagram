@@ -30,7 +30,7 @@ public:
 	ENABLE_RUNTIME_CLASSTYPE();
 
 	ScrollGump();
-	ScrollGump(ObjId owner, std::string msg);
+	ScrollGump(ObjId owner, const std::string &msg);
 	virtual ~ScrollGump();
 
 	// Go to the next page on mouse click
@@ -50,7 +50,7 @@ protected:
 public:
 	bool loadData(IDataSource* ids, uint32 version);
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif

@@ -17,7 +17,7 @@
  */
 
 #ifndef MENUGUMP_H
-#define MEUNGUMP_H
+#define MENUGUMP_H
 
 #include "ModalGump.h"
 

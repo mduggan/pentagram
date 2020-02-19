@@ -97,7 +97,7 @@ void Process::suspend()
 	flags |= PROC_SUSPENDED;
 }
 
-void Process::dumpInfo()
+void Process::dumpInfo() const
 {
 	pout << "Process " << getPid() << " class "
 		 << GetClassType().class_name << ", item " << item_num
@@ -110,7 +110,7 @@ void Process::dumpInfo()
 	if (flags & PROC_RUNPAUSED) pout << "R";
 	if (!waiting.empty()) {
 		pout << ", notify: ";
-		for (std::vector<ProcId>::iterator i = waiting.begin();
+		for (std::vector<ProcId>::const_iterator i = waiting.begin();
 			 i != waiting.end(); ++i)
 		{
 			if (i != waiting.begin()) pout << ", ";
@@ -120,13 +120,13 @@ void Process::dumpInfo()
 	pout << std::endl;
 }
 
-void Process::save(ODataSource* ods)
+void Process::save(ODataSource* ods) const
 {
 	writeProcessHeader(ods);
 	saveData(ods); // virtual
 }
 
-void Process::writeProcessHeader(ODataSource* ods)
+void Process::writeProcessHeader(ODataSource* ods) const
 {
 	const char* cname = GetClassType().class_name; // virtual
 	uint16 clen = strlen(cname);
@@ -135,7 +135,7 @@ void Process::writeProcessHeader(ODataSource* ods)
 	ods->write(cname, clen);
 }
 
-void Process::saveData(ODataSource* ods)
+void Process::saveData(ODataSource* ods) const
 {
 	ods->write2(pid);
 	ods->write4(flags);

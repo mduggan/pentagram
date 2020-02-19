@@ -81,13 +81,13 @@ public:
 
 	//! Get the weight of the container and its contents
 	//! \return weight
-	virtual uint32 getTotalWeight();
+	virtual uint32 getTotalWeight() const;
 
 	//! Get the container's capacity
-	virtual uint32 getCapacity();
+	virtual uint32 getCapacity() const;
 
 	//! Get the total volume used up by the container's current contents
-	virtual uint32 getContentVolume();
+	virtual uint32 getContentVolume() const;
 
 	//! Assign self and contents an objID
 	//! \return the assiged ID
@@ -99,7 +99,7 @@ public:
 	//! Destroy self
 	virtual void destroy(bool delnow=false);
 
-	virtual void dumpInfo();
+	virtual void dumpInfo() const;
 
 	bool loadData(IDataSource* ids, uint32 version);
 
@@ -108,7 +108,7 @@ public:
 
 protected:
 	//! save Container data
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	std::list<Item*> contents;
 };

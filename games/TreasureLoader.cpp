@@ -55,7 +55,7 @@ void TreasureLoader::loadDefaults()
 
 }
 
-bool TreasureLoader::parse(std::string desc,
+bool TreasureLoader::parse(const std::string &desc,
 						   std::vector<TreasureInfo>& treasure)
 {
 	treasure.clear();
@@ -76,7 +76,7 @@ bool TreasureLoader::parse(std::string desc,
 	return true;
 }
 
-bool TreasureLoader::internalParse(std::string desc, TreasureInfo& ti,
+bool TreasureLoader::internalParse(const std::string &desc, TreasureInfo& ti,
 								   bool loadingDefault)
 {
 	ti.special = "";
@@ -122,7 +122,7 @@ bool TreasureLoader::internalParse(std::string desc, TreasureInfo& ti,
 		} else if (key == "type" && !loadingDefault) {
 			if (loadedDefault)
 				return false;
-			std::map<Pentagram::istring, TreasureInfo>::iterator iter;
+			std::map<Pentagram::istring, TreasureInfo>::const_iterator iter;
 			iter = defaultTreasure.find(val);
 			if (iter != defaultTreasure.end())
 				ti = iter->second;
@@ -148,10 +148,12 @@ bool TreasureLoader::internalParse(std::string desc, TreasureInfo& ti,
 	return true;
 }
 
-bool TreasureLoader::parseUInt32Vector(std::string val,
+bool TreasureLoader::parseUInt32Vector(const std::string &val_,
 									   std::vector<uint32>& vec)
 {
 	vec.clear();
+
+	std::string val(val_);
 
 	std::string::size_type pos;
 	while (!val.empty()) {
@@ -179,7 +181,7 @@ bool TreasureLoader::parseUInt32Vector(std::string val,
 	return true;
 }
 
-bool TreasureLoader::parseUIntRange(std::string val,
+bool TreasureLoader::parseUIntRange(const std::string &val,
 								   unsigned int& min, unsigned int& max)
 {
 	std::string::size_type pos = val.find('-');
@@ -196,14 +198,14 @@ bool TreasureLoader::parseUIntRange(std::string val,
 	return ok;
 }
 
-bool TreasureLoader::parseDouble(std::string val, double& d)
+bool TreasureLoader::parseDouble(const std::string &val, double& d)
 {
 	// TODO: error checking
 	d = std::strtod(val.c_str(), 0);
 	return true;
 }
 
-bool TreasureLoader::parseInt(std::string val, int& i)
+bool TreasureLoader::parseInt(const std::string &val, int& i)
 {
 	// TODO: error checking
 	i = std::strtol(val.c_str(), 0, 0);

@@ -33,17 +33,17 @@ public:
 	void loadDefaults();
 
 	//! parse treasure string into vector of TreasureInfo objects
-	bool parse(std::string, std::vector<TreasureInfo>& treasure);
+	bool parse(const std::string &, std::vector<TreasureInfo>& treasure);
 
 private:
 	std::map<Pentagram::istring, TreasureInfo> defaultTreasure;
 
-	bool internalParse(std::string desc, TreasureInfo& ti,bool loadingDefault);
+	bool internalParse(const std::string &desc, TreasureInfo& ti,bool loadingDefault);
 
-	bool parseUInt32Vector(std::string val, std::vector<uint32>& vec);
-	bool parseUIntRange(std::string val, unsigned int& min, unsigned int& max);
-	bool parseDouble(std::string val, double& d);
-	bool parseInt(std::string val, int& i);
+	bool parseUInt32Vector(const std::string &val, std::vector<uint32>& vec);
+	bool parseUIntRange(const std::string &val, unsigned int& min, unsigned int& max);
+	bool parseDouble(const std::string &val, double& d);
+	bool parseInt(const std::string &val, int& i);
 };
 
 #endif

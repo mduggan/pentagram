@@ -1977,11 +1977,11 @@ void UCMachine::execProcess(UCProcess* p)
 }
 
 
-std::string& UCMachine::getString(uint16 str)
+const std::string& UCMachine::getString(uint16 str) const
 {
 	static std::string emptystring("");
 
-	std::map<uint16, std::string>::iterator iter = stringHeap.find(str);
+	std::map<uint16, std::string>::const_iterator iter = stringHeap.find(str);
 
 	if (iter != stringHeap.end())
 		return iter->second;
@@ -1991,7 +1991,7 @@ std::string& UCMachine::getString(uint16 str)
 
 UCList* UCMachine::getList(uint16 l)
 {
-	std::map<uint16, UCList*>::iterator iter = listHeap.find(l);
+	std::map<uint16, UCList*>::const_iterator iter = listHeap.find(l);
 
 	if (iter != listHeap.end())
 		return iter->second;
@@ -2275,17 +2275,17 @@ void UCMachine::usecodeStats()
 #endif
 }
 
-void UCMachine::saveGlobals(ODataSource* ods)
+void UCMachine::saveGlobals(ODataSource* ods) const
 {
 	globals->save(ods);
 }
 
-void UCMachine::saveStrings(ODataSource* ods)
+void UCMachine::saveStrings(ODataSource* ods) const
 {
 	stringIDs->save(ods);
 	ods->write4(static_cast<uint32>(stringHeap.size()));
 
-	std::map<uint16, std::string>::iterator iter;
+	std::map<uint16, std::string>::const_iterator iter;
 	for (iter = stringHeap.begin(); iter != stringHeap.end(); ++iter)
 	{
 		ods->write2((*iter).first);
@@ -2294,12 +2294,12 @@ void UCMachine::saveStrings(ODataSource* ods)
 	}
 }
 
-void UCMachine::saveLists(ODataSource* ods)
+void UCMachine::saveLists(ODataSource* ods) const
 {
 	listIDs->save(ods);
 	ods->write4(listHeap.size());
 
-	std::map<uint16, UCList*>::iterator iter;
+	std::map<uint16, UCList*>::const_iterator iter;
 	for (iter = listHeap.begin(); iter != listHeap.end(); ++iter)
 	{
 		ods->write2((*iter).first);

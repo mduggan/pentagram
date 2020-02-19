@@ -113,7 +113,7 @@ uint32 HealProcess::I_feedAvatar(const uint8* args, unsigned int /*argsize*/)
 }
 
 
-void HealProcess::saveData(ODataSource* ods)
+void HealProcess::saveData(ODataSource* ods) const
 {
 	Process::saveData(ods);
 

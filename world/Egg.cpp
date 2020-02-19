@@ -46,7 +46,7 @@ uint16 Egg::hatch()
 	return callUsecodeEvent_hatch();
 }
 
-void Egg::dumpInfo()
+void Egg::dumpInfo() const
 {
 	Item::dumpInfo();
 	pout << "range: " << getXRange() << "," << getYRange()
@@ -59,7 +59,7 @@ void Egg::leaveFastArea()
 	Item::leaveFastArea();
 }
 
-void Egg::saveData(ODataSource* ods)
+void Egg::saveData(ODataSource* ods) const
 {
 	Item::saveData(ods);
 

@@ -45,7 +45,7 @@ public:
 	static void SetFadedModal(bool set) { faded_modal = set; }
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 	virtual void RenderSurfaceChanged();
 };
 

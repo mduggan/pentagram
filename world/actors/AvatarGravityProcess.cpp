@@ -76,7 +76,7 @@ void AvatarGravityProcess::run()
 }
 
 
-void AvatarGravityProcess::saveData(ODataSource* ods)
+void AvatarGravityProcess::saveData(ODataSource* ods) const
 {
 	GravityProcess::saveData(ods);
 }

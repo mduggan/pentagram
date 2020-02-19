@@ -43,7 +43,7 @@ public:
 	INTRINSIC(I_getMonId);
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 

@@ -38,7 +38,7 @@ public:
 
 	virtual void cache(uint32 index);
 	virtual void uncache(uint32 index);
-	virtual bool isCached(uint32 index);
+	virtual bool isCached(uint32 index) const;
 
 	//! return object. DON'T delete or modify!
 	virtual const uint8* get_object_nodel(uint32 index);

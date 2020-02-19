@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "ConfigFileManager.h"
 #include "FileSystem.h"
 
-FixedWidthFont * FixedWidthFont::Create(std::string iniroot)
+FixedWidthFont * FixedWidthFont::Create(const std::string &iniroot)
 {
 	ConfigFileManager *config = ConfigFileManager::get_instance();
 	FileSystem *filesys = FileSystem::get_instance();

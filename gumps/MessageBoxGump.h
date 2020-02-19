@@ -51,13 +51,13 @@ public:
 	//! \param title_colour The colour to be displayed behind the title bar
 	//! \param buttons Array of button names to be displayed. Default is "Ok"
 	//! \return Pid of process that will have the result when finished
-	static ProcId Show(std::string title, std::string message, uint32 title_colour=0xFF30308F, std::vector<std::string> *buttons=0);
-	static ProcId Show(std::string title, std::string message, std::vector<std::string> *buttons) { return Show(title,message,0xFF30308F,buttons); }
+	static ProcId Show(const std::string &title, const std::string &message, uint32 title_colour=0xFF30308F, std::vector<std::string> *buttons=0);
+	static ProcId Show(const std::string &title, const std::string &message, std::vector<std::string> *buttons) { return Show(title,message,0xFF30308F,buttons); }
 
 	virtual void ChildNotify(Gump *child, uint32 message);
 
 protected:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 };
 
 #endif

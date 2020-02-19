@@ -62,7 +62,7 @@ public:
 
 	virtual void cache(uint32 index);
 	virtual void uncache(uint32 index);
-	virtual bool isCached(uint32 index);
+	virtual bool isCached(uint32 index) const;
 
 private:
 	SongInfo		*info[128];

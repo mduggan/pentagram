@@ -99,13 +99,13 @@ Pentagram::Font* FontManager::getTTFont(unsigned int fontnum)
 }
 
 
-TTF_Font* FontManager::getTTF_Font(std::string filename, int pointsize)
+TTF_Font* FontManager::getTTF_Font(const std::string &filename, int pointsize)
 {
 	TTFId id;
 	id.filename = filename;
 	id.pointsize = pointsize;
 
-	std::map<TTFId, TTF_Font*>::iterator iter;
+	std::map<TTFId, TTF_Font*>::const_iterator iter;
 	iter = ttf_fonts.find(id);
 
 	if (iter != ttf_fonts.end())
@@ -149,7 +149,7 @@ void FontManager::setOverride(unsigned int fontnum, Pentagram::Font* override)
 }
 
 
-bool FontManager::addTTFOverride(unsigned int fontnum, std::string filename,
+bool FontManager::addTTFOverride(unsigned int fontnum, const std::string &filename,
 								 int pointsize, uint32 rgb, int bordersize,
 								 bool SJIS)
 {
@@ -206,7 +206,7 @@ bool FontManager::addJPOverride(unsigned int fontnum,
 }
 
 
-bool FontManager::loadTTFont(unsigned int fontnum, std::string filename,
+bool FontManager::loadTTFont(unsigned int fontnum, const std::string &filename,
 							 int pointsize, uint32 rgb, int bordersize)
 {
 	TTF_Font* f = getTTF_Font(filename, pointsize);

@@ -28,7 +28,7 @@ public:
 	//! \param path Path where game is located
 	//! \param gameinfo GameInfo struct to store data in
 	//! \return true if detected succesfully
-	static bool detect(std::string path, GameInfo* gameinfo);
+	static bool detect(const std::string &path, GameInfo* gameinfo);
 };
 
 #endif

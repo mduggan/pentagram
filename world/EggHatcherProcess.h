@@ -41,7 +41,7 @@ public:
 
 	bool loadData(IDataSource* ids, uint32 version);
 private:
-	virtual void saveData(ODataSource* ods);
+	virtual void saveData(ODataSource* ods) const;
 
 	std::vector<uint16> eggs;
 };

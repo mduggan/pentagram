@@ -65,7 +65,7 @@ public:
 	Shape* getShape(FrameID frameid) const;
 	ShapeFrame* getFrame(FrameID frameid) const;
 
-	std::string translate(std::string text);
+	std::string translate(const std::string &text);
 	FrameID translate(FrameID frame);
 
 	enum ShapeFlexId {

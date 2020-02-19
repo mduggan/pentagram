@@ -38,69 +38,69 @@ public:
 	//! \param root The name of the root node in the file
 	//! \param readonly If true, don't write to this file's tree (or the file)
 	//! \return true if succesful
-	bool readConfigFile(std::string fname, Pentagram::istring root,
+	bool readConfigFile(const std::string &fname, const Pentagram::istring &root,
 						bool readonly=false);
-	bool readConfigString(std::string config, Pentagram::istring root,
+	bool readConfigString(const std::string &config, const Pentagram::istring &root,
 						  bool readonly=false);
 
 	//! write all (writable) config files in the given root
 	//! \param root The root to write, or empty string to write everything
-	void write(Pentagram::istring root = c_empty_string);
+	void write(const Pentagram::istring &root = c_empty_string);
 
 	//! clear everything
 	void clear();
 
 	//! clear everything in a root
-	void clearRoot(Pentagram::istring root);
+	void clearRoot(const Pentagram::istring &root);
 
 	//! does the key exist?
-	bool exists(Pentagram::istring key);
+	bool exists(const Pentagram::istring &key) const;
 
 	//! get value
-	bool get(Pentagram::istring key,std::string &ret);
+	bool get(const Pentagram::istring &key, std::string &ret) const;
 	//! get value
-	bool get(Pentagram::istring key, int &ret);
+	bool get(const Pentagram::istring &key, int &ret) const;
 	//! get value
-	bool get(Pentagram::istring, bool &ret);
+	bool get(const Pentagram::istring &key, bool &ret) const;
 
 	//! set value
-	void set(Pentagram::istring key, std::string value);
+	void set(const Pentagram::istring &key, const std::string &value);
 	//! set value
-	void set(Pentagram::istring key, const char* value);
+	void set(const Pentagram::istring &key, const char* value);
 	//! set value
-	void set(Pentagram::istring key, int value);
+	void set(const Pentagram::istring &key, int value);
 	//! set value
-	void set(Pentagram::istring key, bool value);
+	void set(const Pentagram::istring &key, bool value);
 
 	//! remove key
-	void unset(Pentagram::istring key);
+	void unset(const Pentagram::istring &key);
 
 	//! list all keys in a section
 	//! \param section The section to return setkeys of
 	//! \param longformat If true, return the full key name, instead of
 	//!                   just the last part
 	//! \return the keys. They have no guaranteed order.
-	std::vector<Pentagram::istring> listKeys(Pentagram::istring section,
-										  bool longformat = false);
+	std::vector<Pentagram::istring> listKeys(const Pentagram::istring &section,
+										  bool longformat = false) const;
 
 	//! list all sections
 	//! \param root The config root to list all sections in
 	//! \param longformat If true, return the full key name (including section)
 	//! \return the sections. They have no guaranteed order.
-	std::vector<Pentagram::istring> listSections(Pentagram::istring root,
-											  bool longformat = false);
+	std::vector<Pentagram::istring> listSections(const Pentagram::istring &root,
+											  bool longformat = false) const;
 
 	//! list all key-value pairs in the given section.
 	//! \param section The section to list
 	//! \param longformat If true, return the full key name (including section)
 	//! \return the key-value pairs. They have no guaranteed order.
 	std::map<Pentagram::istring,std::string> listKeyValues(
-		Pentagram::istring section, bool longformat = false);
+		const Pentagram::istring &section, bool longformat = false) const;
 
 private:
 
-	INIFile* findKeyINI(Pentagram::istring key);
-	INIFile* findWriteINI(Pentagram::istring key);
+	INIFile* findKeyINI(const Pentagram::istring &key) const;
+	INIFile* findWriteINI(const Pentagram::istring &key);
 
 	std::vector<INIFile*> inifiles;
 

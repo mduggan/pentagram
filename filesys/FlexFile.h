@@ -60,7 +60,7 @@ public:
 			return 0;
 	}
 
-	virtual uint32 getCount() { return count; }
+	virtual uint32 getCount() const { return count; }
 
 	virtual uint32 getIndexCount() { return count; }
 

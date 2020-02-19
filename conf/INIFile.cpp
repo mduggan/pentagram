@@ -31,7 +31,7 @@ INIFile::INIFile()
 
 }
 
-INIFile::INIFile(string fname, istring root_)
+INIFile::INIFile(const string &fname, const istring &root_)
 	: root(root_), is_file(false), readonly(false)
 {
 	readConfigFile(fname);
@@ -42,12 +42,23 @@ INIFile::~INIFile()
 
 }
 
-bool INIFile::Section::hasKey(istring key)
+bool INIFile::Section::hasKey(const istring &key) const
 {
 	return (getKey(key) != 0);
 }
 
-INIFile::KeyValue* INIFile::Section::getKey(istring key)
+INIFile::KeyValue const* INIFile::Section::getKey(const istring &key) const
+{
+	std::list<KeyValue>::const_iterator i;
+	for (i = keys.begin(); i != keys.end(); ++i) {
+		if (i->key == key) {
+			return &(*i);
+		}
+	}
+	return 0;
+}
+
+INIFile::KeyValue* INIFile::Section::getKey(const istring &key)
 {
 	std::list<KeyValue>::iterator i;
 	for (i = keys.begin(); i != keys.end(); ++i) {
@@ -58,7 +69,7 @@ INIFile::KeyValue* INIFile::Section::getKey(istring key)
 	return 0;
 }
 
-void INIFile::Section::setKey(istring key, string value)
+void INIFile::Section::setKey(const istring &key, const string &value)
 {
 	KeyValue* kv = getKey(key);
 	if (kv) {
@@ -73,7 +84,7 @@ void INIFile::Section::setKey(istring key, string value)
 	keys.push_back(newkey);
 }
 
-void INIFile::Section::unsetKey(istring key)
+void INIFile::Section::unsetKey(const istring &key)
 {
 	std::list<KeyValue>::iterator i;
 	for (i = keys.begin(); i != keys.end(); ++i) {
@@ -83,11 +94,11 @@ void INIFile::Section::unsetKey(istring key)
 	}
 }
 
-string INIFile::Section::dump()
+string INIFile::Section::dump() const
 {
 	string s = comment;
 	s += "[" + name + "]\n";
-	std::list<KeyValue>::iterator i;
+	std::list<KeyValue>::const_iterator i;
 	for (i = keys.begin(); i != keys.end(); ++i) {
 		s += i->comment;
 		s += i->key + "=" + i->value + "\n";
@@ -96,7 +107,7 @@ string INIFile::Section::dump()
 	return s;
 }
 
-bool INIFile::readConfigFile(string fname)
+bool INIFile::readConfigFile(const string &fname)
 {
 	IDataSource *f = FileSystem::get_instance()->ReadFile(fname, true);
 	if (!f) return false;
@@ -150,7 +161,7 @@ static void ltrim(string& s)
 // config-manager.cpp, copyright (C) 2001-2004 The ScummVM project
 // http://www.scummvm.org/
 
-bool INIFile::readConfigString(string config)
+bool INIFile::readConfigString(const string &config_)
 {
 	is_file = false;
 
@@ -158,6 +169,7 @@ bool INIFile::readConfigString(string config)
 	string comment;
 	unsigned int lineno = 0;
 	Section section;
+	string config(config_);
 
 	while (!config.empty())
 	{
@@ -275,7 +287,7 @@ bool INIFile::readConfigString(string config)
 	return true;
 }
 
-void INIFile::clear(istring root_)
+void INIFile::clear(const istring &root_)
 {
 	sections.clear();
 	root = root_;
@@ -284,11 +296,11 @@ void INIFile::clear(istring root_)
 	filename = "";
 }
 
-string INIFile::dump()
+string INIFile::dump() const
 {
 	string s;
 
-	std::list<Section>::iterator i;
+	std::list<Section>::const_iterator i;
 	for (i = sections.begin(); i != sections.end(); ++i) {
 		if (i != sections.begin())
 			s += "\n";
@@ -299,7 +311,7 @@ string INIFile::dump()
 	return s;
 }
 
-void INIFile::write()
+void INIFile::write() const
 {
 	if (!is_file || readonly)
 		return;
@@ -314,7 +326,7 @@ void INIFile::write()
 	delete f;
 }
 
-bool INIFile::stripRoot(istring& key)
+bool INIFile::stripRoot(istring& key) const
 {
 	string::size_type pos = key.find('/');
 	if (pos == istring::npos) return false;
@@ -327,7 +339,7 @@ bool INIFile::stripRoot(istring& key)
 	return true;
 }
 
-INIFile::Section* INIFile::getSection(istring section)
+INIFile::Section* INIFile::getSection(const istring &section)
 {
 	std::list<Section>::iterator i;
 	for (i = sections.begin(); i != sections.end(); ++i) {
@@ -338,7 +350,18 @@ INIFile::Section* INIFile::getSection(istring section)
 	return 0;	
 }
 
-bool INIFile::splitKey(istring key, istring& section, istring& sectionkey)
+INIFile::Section const* INIFile::getSection(const istring &section) const
+{
+	std::list<Section>::const_iterator i;
+	for (i = sections.begin(); i != sections.end(); ++i) {
+		if (i->name == section) {
+			return &(*i);
+		}
+	}
+	return 0;	
+}
+
+bool INIFile::splitKey(const istring &key, istring& section, istring& sectionkey) const
 {
 	// TODO: more sanity checks might be nice
 
@@ -351,47 +374,51 @@ bool INIFile::splitKey(istring key, istring& section, istring& sectionkey)
 	return true;
 }
 
-bool INIFile::hasSection(istring section)
+bool INIFile::hasSection(const istring &section_) const
 {
+	istring section(section_);
 	if (!stripRoot(section)) return false;
 
 	return (getSection(section) != 0);
 }
 
-bool INIFile::hasKey(istring key)
+bool INIFile::hasKey(const istring &key_) const
 {
+	istring key(key_);
 	if (!stripRoot(key)) return false;
 	istring s, k;
 	splitKey(key, s, k);
 
-	Section* section = getSection(s);
+	Section const* section = getSection(s);
 	if (!section) return false;
 
 	return section->hasKey(k);
 }
 
-bool INIFile::checkRoot(istring key)
+bool INIFile::checkRoot(const istring &key_) const
 {
+	istring key(key_);
 	return (root == key || stripRoot(key));
 }
 
-bool INIFile::value(istring key, string& ret)
+bool INIFile::value(const istring &key_, string& ret) const
 {
+	istring key(key_);
 	if (!stripRoot(key)) return false;
 	istring s, k;
 	splitKey(key, s, k);
 
-	Section* section = getSection(s);
+	Section const* section = getSection(s);
 	if (!section) return false;
 
-	KeyValue* kv = section->getKey(k);
+	KeyValue const* kv = section->getKey(k);
 	if (!kv) return false;
 
 	ret = kv->value;
 	return true;
 }
 
-bool INIFile::value(istring key, int& ret)
+bool INIFile::value(const istring &key, int& ret) const
 {
 	string stringval;
 	bool found = value(key, stringval);
@@ -402,7 +429,7 @@ bool INIFile::value(istring key, int& ret)
 	return true;
 }
 
-bool INIFile::value(istring key, bool& ret)
+bool INIFile::value(const istring &key, bool& ret) const
 {
 	istring stringval;
 	bool found = value(key, stringval);
@@ -413,8 +440,9 @@ bool INIFile::value(istring key, bool& ret)
 	return true;
 }
 
-void INIFile::set(istring key, string value)
+void INIFile::set(const istring &key_, const string &value)
 {
+	istring key(key_);
 	if (!stripRoot(key)) return;
 	istring s, k;
 	splitKey(key, s, k);
@@ -432,20 +460,20 @@ void INIFile::set(istring key, string value)
 	section->setKey(k, value);
 }
 
-void INIFile::set(istring key, const char* value)
+void INIFile::set(const istring &key, const char* value)
 {
 	string v = value;
 	set(key, v);
 }
 
-void INIFile::set(istring key, int value)
+void INIFile::set(const istring &key, int value)
 {
 	char buf[32];
 	snprintf(buf, 32, "%d", value);
 	set(key, buf);
 }
 
-void INIFile::set(istring key, bool value)
+void INIFile::set(const istring &key, bool value)
 {
 	if (value)
 		set(key, "true");
@@ -453,8 +481,9 @@ void INIFile::set(istring key, bool value)
 		set(key, "false");
 }
 
-void INIFile::unset(istring key)
+void INIFile::unset(const istring &key_)
 {
+	istring key(key_);
 	if (!stripRoot(key)) return;
 	istring s, k;
 	splitKey(key, s, k);
@@ -465,15 +494,16 @@ void INIFile::unset(istring key)
 	}	
 }
 
-void INIFile::listKeys(std::set<istring>& keys, istring section_,
-					   bool longformat)
+void INIFile::listKeys(std::set<istring>& keys, const istring &section_,
+					   bool longformat) const
 {
-	if (!stripRoot(section_)) return;
+	istring sectionname(section_);
+	if (!stripRoot(sectionname)) return;
 
-	Section* section = getSection(section_);
+	Section const* section = getSection(sectionname);
 	if (!section) return;
 
-	std::list<KeyValue>::iterator i;
+	std::list<KeyValue>::const_iterator i;
 	for (i = section->keys.begin(); i != section->keys.end(); ++i) {
 		istring k;
 		if (longformat)
@@ -485,9 +515,9 @@ void INIFile::listKeys(std::set<istring>& keys, istring section_,
 	}
 }
 
-void INIFile::listSections(std::set<istring>& sections_, bool longformat)
+void INIFile::listSections(std::set<istring>& sections_, bool longformat) const
 {
-	std::list<Section>::iterator i;
+	std::list<Section>::const_iterator i;
 	for (i = sections.begin(); i != sections.end(); ++i) {
 		istring s;
 		if (longformat)
@@ -499,15 +529,16 @@ void INIFile::listSections(std::set<istring>& sections_, bool longformat)
 	}	
 }
 
-void INIFile::listKeyValues(std::map<istring,string>& keyvalues,
-							istring section_, bool longformat)
+void INIFile::listKeyValues(std::map<istring, string>& keyvalues,
+							const istring &section_, bool longformat) const
 {
-	if (!stripRoot(section_)) return;
+	istring sectionname(section_);
+	if (!stripRoot(sectionname)) return;
 
-	Section* section = getSection(section_);
+	Section const* section = getSection(sectionname);
 	if (!section) return;
 
-	std::list<KeyValue>::iterator i;
+	std::list<KeyValue>::const_iterator i;
 	for (i = section->keys.begin(); i != section->keys.end(); ++i) {
 		istring k;
 		if (longformat)

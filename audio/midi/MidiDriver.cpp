@@ -126,7 +126,7 @@ std::string MidiDriver::getDriverName(uint32 index)
 }
 
 // Create an Instance of a MidiDriver
-MidiDriver *MidiDriver::createInstance(std::string desired_driver,uint32 sample_rate,bool stereo)
+MidiDriver *MidiDriver::createInstance(const std::string &desired_driver,uint32 sample_rate,bool stereo)
 {
 	InitMidiDriverVector();
 
@@ -200,8 +200,8 @@ MidiDriver *MidiDriver::createInstance(std::string desired_driver,uint32 sample_
 
 #ifdef PENTAGRAM_IN_EXULT
 
-std::string MidiDriver::getConfigSetting(std::string name,
-										 std::string defaultval)
+std::string MidiDriver::getConfigSetting(const std::string &name,
+										 const std::string &defaultval)
 {
 	std::string key = "config/audio/midi/";
 	key += name;
@@ -213,8 +213,8 @@ std::string MidiDriver::getConfigSetting(std::string name,
 
 #else
 
-std::string MidiDriver::getConfigSetting(std::string name,
-										 std::string defaultval)
+std::string MidiDriver::getConfigSetting(const std::string &name,
+										 const std::string &defaultval)
 {
 	std::string val;
 	if (!SettingManager::get_instance()->get(name,val))
